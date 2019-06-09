@@ -1,0 +1,47 @@
+git是一个开源的分布式版本控制系统，可以有效、告诉地处理从很小到非常大的项目版本管理 和git类似的还有svn-->是一个集中式的版本控制系统
+
+2.git和svn的区别 1>git是分布式的，版本库在服务器和我们自己电脑都有一份，如果网络不顺畅，不会影响非我们的工作，如果服务器坏掉，我们还可以通过自己的版本库恢复 2>svn是集中式的，版本库集中存放在服务器上，如果网络不顺畅，会影响我们的工作，如果服务器坏掉，没办法恢复
+
+全局配置用户名: git config --global user.name xxxx 全局配置邮箱 git config --global user.email xxxx.163.com
+
+查看全局配置: git config --list
+
+git相关的命令
+
+命令	说明
+git init	初始化本地版本库
+git status	查看工作区和暂存区的修改
+git add .	把工作区所有的修改提交到暂存区
+git commit -m "描述"	把修改从暂存区提交到本地版本库
+git log	查看本地提交记录
+git reflog	查看所有提交记录
+git diff	查看工作区具体的修改
+git branch 分支名	新建分支
+git branch	查看本地所有的分支
+git branch -a	查看本地和远程所有的分支
+git branch -r	查看远程的分支
+git checkout 分支名	切换分支
+git checkout -b 分支名	创建并切换分支
+git merge 分支名	合并分支
+git branch -d	删除分支
+git push origin -d 分支名	删除远程的分支
+撤销
+1.第一种情况 :撤销工作区的修改
+
+git checkout --文件路径
+
+2.第二种情况:撤销暂存区的修改
+
+第一步 ：git reset 文件路径  把修改从暂存区撤回到工作区
+
+第二步：git checkout --文件路径
+
+3.第三种情况：回退版本
+
+git reset --hard HEAD^  回退到上一个版本 ^^ 上上个版本
+
+git reset --hard commit_id(xxxx)
+git pull:从远程拉去代码并合并
+git fetch从远程拉取代码不和本地合并
+git merge：合并代码
+git pull=git fetch +git merge
