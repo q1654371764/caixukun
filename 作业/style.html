@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1.用原生实现一个promise
+        function MyPromise(func) {
+            var self = this;
+            var count = 0;
+            this.cbklist = [];
+            this.then = function (callback) {
+                //将所有.then方法传进来的参数push到数组当中
+                this.cbklist.push(callback);
+                //能实现链式调用的关键
+                return this;
+            }
+            this.success = function () {
+                //使用递归调用自身
+                if (count == self.cbklist.length) return;
+                self.cbklist[count++](self.success);
+            }
+            //进来时调用第一个函数
+            func(self.success);
+        }
+        // 下面是调用的例子
+        function ajaxA(success) {
+            setTimeout(function () {
+                console.log("AAAAAAAAAA");
+                success();
+            }, 3000);
+        }
+        function ajaxB(success) {
+            setTimeout(function () {
+                console.log("BBBBBBBBBB");
+                success();
+            }, 2000);
+        }
+        function ajaxC(success) {
+            setTimeout(function () {
+                console.log("CCCCCCCCCC");
+                success();
+            }, 6000);
+        }
+        function ajaxD() {
+            setTimeout(function () {
+                console.log("DDDDDDDDD");
+            }, 2000);
+        }
+        new MyPromise(ajaxA).then(ajaxB).then(ajaxC).then(ajaxD);
+
+    //2. 用async实现十张图片的依次加载和并行加载
+    </script>
+</body>
+
+</html>
+<!-- 3. 封装Person能够满足如下测试用例
+        Person('li');
+        // This is li
+        Person('li').sleep(10).eat('danner')
+        // This is li
+        // ...等待10ms
+        // sleep after 10
+        // eat danner
+        Person('li').sleepFirst(5000).eat('danner').sleep(3000).eat('food').sleep(3000).eat(123);
+        // ...等待5s
+        // sleep before 5000
+        // This is li
+        // eat dinner
+        // sleep after 3000
+        // eat food
+        // sleep after 3000
+        // eat 123
+        // ...等待5ms
+        // sleep before 5
+        // This is li
+        // eat danner
+        Person('li').eat('food').eat('danner')
+        // This is li
+        // eat food
+        // eat danner -->
