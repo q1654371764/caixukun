@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var obj2 = {}
+        // var proxy = new Proxy(obj2,{
+        //     get(target,key){
+        //         console.log(target,key)
+        //     },
+        //     set(target,key,val){
+        //         console.log(target,key,vak)
+        //     }
+        // })
+        // var obj = {a:1}
+        //测试writable  是否可写
+        // Object.defineProperty(obj,'a',{
+        //     writable : false
+        // })
+        //测试configurable  是否可被删除
+        // Object.defineProperty(obj,'a',{
+        //     configurable : false
+        // })
+        //测试enumerable  是否可被枚举
+        // Object.defineProperty(obj,'a',{
+        //     enumerable : false
+        // })
+        //测试value
+        // Object.defineProperty(obj,'a',{
+        //     value : false
+        // })
+        //测试get/set
+        // Object.defineProperty(obj,'a',{
+        //     get(){
+        //         return 'abc'
+        //     },
+        //     set(val){
+        //         console.log('val...',val)
+        //     }
+        // })
+
+        // function fun(url){
+        //     return new Promise((resolve,reject)=>{
+        //         let img = new Image()
+        //         img.src = url;
+        //         img.onload =function(){
+        //             resolve(img)
+        //         }
+        //         img.onerror =function(){
+        //             reject(new error())
+        //         }
+        //     })
+        // }
+        // let url = 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3375131581,1387032381&fm=173&app=49&f=JPEG?w=218&h=146&s=650049B346936BC23AA41CFF03008023'
+        // fun(url).then(res=>{
+        //     document.body.appendChild(res)
+        // },err=>{
+        //     console.log(err)
+        // }).then(res1=>{
+        //     console.log(res1)
+        // },err=>{
+        //     console.log(res1)
+        // }).then(res2=>{
+        //     console.log(res2)
+        // },err=>{
+        //     console.log(res2)
+        // })
+
+        //拷贝
+        // var arr1 = [1,2,3,{
+        //     list:[4,5,6,7]
+        // }]
+        // var arr2 = [...arr1]
+        // console.log(arr1[3].list)
+        // console.log(arr1 === arr2,arr1[3].list === arr2[3].list)
+       
+        // function Mypromise(url, reslove, reject) {
+        //     var img = new Image()
+        //     img.src = url
+        //     img.onload = function () {
+        //         reslove(img)
+        //     }
+        //     img.onerror = function () {
+        //         reject()
+        //     }
+        // }
+        // var url = 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3375131581,1387032381&fm=173&app=49&f=JPEG?w=218&h=146&s=650049B346936BC23AA41CFF03008023'
+        // Mypromise(url, function (img) {
+        //     document.body.appendChild(img)
+        // }, function () {
+        //     console.log('error')
+        // })
+
+        
+    </script>
+</body>
+</html>
