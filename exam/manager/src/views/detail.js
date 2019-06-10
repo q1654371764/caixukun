@@ -24,7 +24,7 @@ function IndexPage() {
       <div className={styles.section}>
         <div className={styles.box}>
           <div className={styles.left}>
-              <Sider class={styles.slide}>
+              <Sider className={styles.slide}>
                 <Menu
                   mode="inline"
                   theme="dark"

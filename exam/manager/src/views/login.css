@@ -1,0 +1,38 @@
+.login{
+  width: 100%;
+  height: 100%;
+  background: blue;
+}
+.loginform{
+  width: 400px;
+  height: 296px;
+  border: 1px solid #ccc;
+  background: white;
+  position: absolute;
+  left: 55%;
+  top: 25%;
+}
+.input1{
+  width: 360px;
+  height: 40px;
+  margin-left: 20px;
+  margin-top: 40px;
+}
+.input2{
+  width: 360px;
+  height: 40px;
+  margin-left: 20px;
+}
+.eve{
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.but{
+  width: 360px;
+  height: 40px;
+  margin-left: 20px;
+}
