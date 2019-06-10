@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // function Mypromise(url, reslove, reject) {
+        //     var img = new Image()
+        //     img.src = url
+        //     img.onload = function () {
+        //         reslove(img)
+        //     }
+        //     img.onerror = function () {
+        //         reject()
+        //     }
+        // }
+        // var url = 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3375131581,1387032381&fm=173&app=49&f=JPEG?w=218&h=146&s=650049B346936BC23AA41CFF03008023'
+        // Mypromise(url, function (img) {
+        //     document.body.appendChild(img)
+        // }, function () {
+        //     console.log('error')
+        // }) 
+        
+        //Promise加载图片
+        var loadImg = (url) => {
+            return new Promise((resolve, reject) => {
+                // 创建图片
+                var img = new Image()
+                // 加载成功
+                img.onload = () => {
+                resolve(img)
+                }
+                // 图片加载
+                img.onerror = () => {
+                reject(new Error('图片加载失败'))
+                }
+                img.src = url
+            })
+        }
+        var imgs = ['https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3375131581,1387032381&fm=173&app=49&f=JPEG?w=218&h=146&s=650049B346936BC23AA41CFF03008023','https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3375131581,1387032381&fm=173&app=49&f=JPEG?w=218&h=146&s=650049B346936BC23AA41CFF03008023','https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3375131581,1387032381&fm=173&app=49&f=JPEG?w=218&h=146&s=650049B346936BC23AA41CFF03008023','https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3375131581,1387032381&fm=173&app=49&f=JPEG?w=218&h=146&s=650049B346936BC23AA41CFF03008023','https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3375131581,1387032381&fm=173&app=49&f=JPEG?w=218&h=146&s=650049B346936BC23AA41CFF03008023','https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3375131581,1387032381&fm=173&app=49&f=JPEG?w=218&h=146&s=650049B346936BC23AA41CFF03008023'
+        ]   
+        // 串行加载
+        var ImgAsync = async (imgs) => {
+            for (var i = 0; i < imgs.length; i++) {
+            let img = await loadImg(imgs[i])
+            document.body.appendChild(img)
+            console.log(new Date() * 1)
+            }
+        }
+        ImgAsync(imgs)
+        // 并行加载
+        var loadImgAsync = (imgs)=>{
+            imgs.forEach(async (item)=>{
+            let img = await loadImg(item)
+            document.body.appendChild(img)
+            console.log(new Date() * 1)
+            })
+        }
+        loadImgAsync(imgs)
+        //     let arr=[
+        //   "http://pic15.nipic.com/20110628/ 1369025_192645024000_2.jpg",
+        //   "http://pic18.nipic.com/20120204/8339340_144203764154_2.jpg",
+        //   "http://pic25.nipic.com/20121205/10197997_003647426000_2.jpg",
+        //   "http://pic40.nipic.com/20140331/9469669_142840860000_2.jpg",
+        //   "http://pic17.nipic.com/20111101/3094309_171235018306_2.jpg",
+        //   "http://pic9.nipic.com/20100827/5252423_161258496483_2.jpg",
+        //   ];
+        
+        //    function loader(url){
+        //       return new Promise((reslove,reject)=>{
+        //       let img=new Image();
+        //       img.src=url;
+
+        //       img.onload=function(){
+        //          reslove(img);
+        //       }
+        //       img.onerror=function(){
+        //          reject(new Error);
+        //       }
+        //   })
+        //  }
+        
+        //  async function loaderr() {
+        //     for(let i=0;i<arr.length;i++){
+        //     await loader(arr[i]).then(res=>{
+        //         document.body.appendChild(res);
+        //         console.log("按需加载-----"+new Date()*1)
+        //     })
+        //   }
+        //  }
+        //  loaderr();
+
+
+        //  setTimeout(()=>{
+        //     for(var j=0;j<arr.length;j++){
+        //         async function loaded() {
+        //             await loader(arr[j]).then(res=>{
+        //             document.body.appendChild(res);
+        //             console.log("一起加载-----"+new Date()*1)
+        //         })
+        //     }
+        //     loaded();
+        //     }
+            
+        //  },1000);
+
+    </script>
+</body>
+</html>
