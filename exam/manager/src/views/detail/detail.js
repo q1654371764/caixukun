@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'dva';
-import styles from './detail.css';
+import styles from './detail.scss';
 import { Layout, Menu, Icon } from 'antd';
 const { SubMenu } = Menu;
 const { Content, Footer, Sider } = Layout;
@@ -24,11 +24,11 @@ function IndexPage() {
       <div className={styles.section}>
         <div className={styles.box}>
           <div className={styles.left}>
-            <Sider class={styles.slide}>
+            <Sider className={styles.slide}>
               <Menu
                 mode="inline"
                 theme="dark"
-                // defaultSelectedKeys={['1']}
+                defaultSelectedKeys={['1']}
                 // defaultOpenKeys={['sub1']}
                 style={{ height: '100%', borderRight: 0 }}
               >
@@ -99,10 +99,8 @@ function IndexPage() {
               </Menu>
             </Sider>
           </div>
-          <Content style={{ padding: '0 24px', minHeight: 280 }}>Content</Content>
         </div>
       </div>
-      <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
     </div>
 
   );

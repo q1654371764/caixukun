@@ -97,4 +97,4 @@ const mapDispatch = dispatch => ({
     }
 })
 
-export default connect(mapState,mapDispatch)(Form.create()(Login));
+export default connect(mapState,mapDispatch)(Form.create({ name: 'normal_login' })(Login));
