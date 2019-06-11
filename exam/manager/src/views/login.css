@@ -1,7 +1,7 @@
 .login{
   width: 100%;
   height: 100%;
-  background: blue;
+  background: rgb(0, 0, 128)
 }
 .loginform{
   width: 400px;
@@ -9,8 +9,9 @@
   border: 1px solid #ccc;
   background: white;
   position: absolute;
-  left: 55%;
+  left: 64%;
   top: 25%;
+  border-radius: 3px;
 }
 .input1{
   width: 360px;
@@ -28,6 +29,7 @@
   height: 40px;
   display: flex;
   justify-content: space-between;
+  margin-top: -10px;
   padding-left: 20px;
   padding-right: 20px;
 }
@@ -35,4 +37,6 @@
   width: 360px;
   height: 40px;
   margin-left: 20px;
+  margin-top: 10px;
+  background: linear-gradient(90deg,rgb(2,58,253), rgb(86, 119, 230))
 }

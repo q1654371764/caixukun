@@ -3,7 +3,7 @@ import { connect } from 'dva';
 import styles from './detail.css';
 import { Layout, Menu, Icon } from 'antd';
 const { SubMenu } = Menu;
-const { Content, Footer, Sider } = Layout;
+const { Content, Sider } = Layout;
 function IndexPage() {
   return (
     <div className={styles.wrap}>
@@ -28,8 +28,8 @@ function IndexPage() {
                 <Menu
                   mode="inline"
                   theme="dark"
-                  defaultSelectedKeys={['1']}
-                  defaultOpenKeys={['sub1']}
+                  // defaultSelectedKeys={['1']}
+                  // defaultOpenKeys={['sub1']}
                   style={{ height: '100%', borderRight: 0 }}
                 >
                   <SubMenu
@@ -102,7 +102,6 @@ function IndexPage() {
           <Content style={{ padding: '0 24px', minHeight: 280 }}>Content</Content>
         </div>
       </div>
-      <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>  
     </div>
     
   );

@@ -26,7 +26,7 @@ body,html{
   box-sizing: border-box;
   align-items: center;
   border-bottom: 1px solid #ccc;
-  box-shadow: 10px 1px 3px #888888;
+  box-shadow: 1px 1px 3px #888888;
 }
 .header_left{
   width: 150px;

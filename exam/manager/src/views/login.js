@@ -19,14 +19,14 @@ class login extends React.Component {
               <Input
                 prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                 placeholder="请输入用户名"
-                className={styles.input1} value={this.state.name} onChange={this.username}/>
+                className={styles.input1} onChange={this.username}/>
           </Form.Item>
           <Form.Item>
               <Input
                 prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                 type="password"
-                placeholder="请输入密码"
-                className={styles.input2} value={this.state.pwd} onChange={this.password}/>
+                placeholder="请输入用户密码"
+                className={styles.input2} onChange={this.password}/>
           </Form.Item>
           <Form.Item>
             <div className={styles.eve}>
@@ -40,7 +40,7 @@ class login extends React.Component {
               // this.props.dispatch({type:"example/login"})
               // console.log(this.props.data)
             }}>
-              <a href="/#/detail">登录</a>
+              <a href="/#/detail">登陆</a>
             </Button>
           </Form.Item>
         </Form>
