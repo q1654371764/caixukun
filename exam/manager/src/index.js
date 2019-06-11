@@ -1,6 +1,11 @@
+// 引入babel补丁，解决路由警告
+import '@babel/polyfill';
 import dva from 'dva';
+// 引入全局样式
 import './index.css';
-import "antd/dist/antd.css";
+// 引入antd样式
+import 'antd/dist/antd.css';
+
 // 1. Initialize
 const app = dva();
 
@@ -8,7 +13,7 @@ const app = dva();
 // app.use({});
 
 // 3. Model
-// app.model(require('./models/example').default);
+app.model(require('./models/user').default);
 
 // 4. Router
 app.router(require('./router').default);
