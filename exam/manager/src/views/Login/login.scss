@@ -1,4 +1,4 @@
-.login{
+/* .login{
   width: 100%;
   height: 100%;
   background: rgb(0, 0, 128)
@@ -39,4 +39,30 @@
   margin-left: 20px;
   margin-top: 10px;
   background: linear-gradient(90deg,rgb(2,58,253), rgb(86, 119, 230))
+} */
+:global{
+  html,body{
+    background: blue;
+  }
+  .box{
+    width: 340px;
+    height: 260px;
+    border: 1px solid #ccc;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    background: white;
+    position: absolute;
+    left: 65%;
+    top: 25%;
+  }
+ .login_form {
+    max-width: 300px;
+  }
+  .login-form-forgot {
+    float: right;
+  }
+  .login-form-button {
+    width: 100%;
+  }
 }
