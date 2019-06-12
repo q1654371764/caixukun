@@ -1,17 +1,21 @@
-import React,{useState, useEffect} from 'react';
+import React,{useEffect} from 'react';
 import { connect } from 'dva';
-import styles from './login.scss';
-import { Form, Icon, Input, Button ,Checkbox} from 'antd';
+import './login.scss';
+import { Form, Icon, Input, Button ,Checkbox ,message} from 'antd';
 
 function login(props) {
   // 获取login
   
   useEffect(()=>{
-    // login({
-    //   user_name: 'chenmanjie',
-    //   user_pwd: 'Chenmanjie123!'
-    // })
-  }, []);
+    if(props.isLogin === 1){
+      console.log('props.history', props.history);
+      message.success('登陆成功');
+      let pathName = decodeURIComponent(props.history.location.search.split('=')[1])
+      props.history.replace(pathName)
+    }else if(props.isLogin === -1){
+      message.error('用户名密码错误');
+    }
+  }, [props.isLogin]);
 
    // 处理表单提交
     let handleSubmit = e => {
@@ -19,7 +23,7 @@ function login(props) {
       props.form.validateFields((err, values) => {
         if (!err) {
           let {login} = props;
-          console.log('Received values of form: ', values);
+          console.log(values);
           // 调登录接口
           login({
             user_name: values.username,
@@ -30,7 +34,8 @@ function login(props) {
     };
     // 表单校验
     const { getFieldDecorator } = props.form;
-    return <div className='box'>
+    return <div className="con">
+      <div className='box'>
       <Form onSubmit={handleSubmit} className="login_form">
     <Form.Item>
       {getFieldDecorator('username', {
@@ -68,6 +73,7 @@ function login(props) {
     </Form.Item>
   </Form>;
     </div>
+    </div>
   }
 
   // props的类型检查
@@ -80,7 +86,9 @@ function login(props) {
   }
 const mapStateToProps = state=>{
   console.log('state...', state);
-  return {}
+  return {
+    ...state.user
+  }
 }
 
 const mapDisaptchToProps = dispatch=>{

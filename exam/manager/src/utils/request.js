@@ -1,7 +1,8 @@
 import axios from 'axios'
+import { getToken } from './user';
 
 const service = axios.create({
-  baseURL:'http://192.168.43.225:7001/',
+  baseURL:'http://169.254.78.156:7001/',
   // withCredentials: true, // 跨域请求时发送 cookies
   timeout: 5000 // request timeout
 })
@@ -9,6 +10,9 @@ const service = axios.create({
 // request interceptor
 service.interceptors.request.use(
   config => {
+    if(getToken()){
+      config.headers['authorization'] = getToken()
+    }
     return config
   },
   error => {
