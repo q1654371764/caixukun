@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {getToken} from '@/utils/user'
+
 // create an axios instance
 const service = axios.create({
   baseURL: 'http://127.0.0.1:7001/',
@@ -29,6 +30,5 @@ service.interceptors.response.use(
     return Promise.reject(error)
   }
 )
-
 
 export default service

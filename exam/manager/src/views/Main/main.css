@@ -7,6 +7,9 @@ body,html{
   width: 100%;
   height: 100%;
 }
+.container{
+  height: 100%;
+}
 #root{
   width: 100%;
   height: 100%;
@@ -25,6 +28,8 @@ body,html{
   padding:  0 30px;
   box-sizing: border-box;
   align-items: center;
+  border-bottom: 1px solid #ccc;
+  box-shadow: 1px 1px 3px #888888;
 }
 .header_left{
   width: 150px;
@@ -72,6 +77,10 @@ margin-left: 10px;
   flex:1;
   background: #ccc;
 }
-.container{
-  height: 100%;
+#components-layout-demo-top-side-2 .logo {
+  width: 120px;
+  height: 31px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px 28px 16px 0;
+  float: left;
 }
