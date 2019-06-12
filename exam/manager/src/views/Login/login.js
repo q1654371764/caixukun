@@ -1,31 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import React, { useEffect } from 'react';
+import { Form, Icon, Input, Button, Checkbox ,message} from 'antd';
 import { connect } from 'dva';
-import style from './login.scss';
+import './login.scss';
 
 function Login(props){
-    const {login,user} = props;
-    useEffect(()=>{
-        console.log(props);
-    }, []);
-    useState(()=>{
-        console.log('useState....',props);
-    })
-    // 表单提交
-    let handleSubmit = e => {
-        e.preventDefault();
-        props.form.validateFields((err, values) => {
-          if (!err) {
-            console.log('Received values of form: ', values);
-            login({
-                user_name: values.username,
-                user_pwd: values.password
-            });
-            console.log(props);
-            props.history.push('/detail')
-          }
-        });
+  // 判断是否登陆
+  useEffect(()=>{
+    if (props.isLogin === 1){
+      // 1.提示登陆成功
+      message.success('登陆成功');
+      // 2.存储cookie
+      // 3.跳转主页面
+      console.log('props.history', props.history);
+      let pathName = decodeURIComponent(props.history.location.search.split('=')[1]);
+      props.history.replace(pathName);
+    }else if(props.isLogin === -1){
+      // 登陆失败
+      message.error('用户名或密码错误')
     }
+  }, [props.isLogin]);
+
+  // 处理表单提交
+  let handleSubmit = e => {
+    e.preventDefault();
+    props.form.validateFields((err, values) => {
+      if (!err) {
+        // 调登录接口
+        props.login({
+          user_name: values.username,
+          user_pwd: values.password
+        })
+      }
+    });
+  };
     // 表单校验
     const { getFieldDecorator } = props.form;
     return <div className='login_wrapper'>
@@ -57,7 +64,7 @@ function Login(props){
                     </Form.Item>
                     <Form.Item>
                         <div className='login_form_remember'>
-                            {getFieldDecorator('remember', {
+                            {getFieldDecorator('remem ber', {
                                 valuePropName: 'checked',
                                 initialValue: true,
                             })(<Checkbox>记住密码</Checkbox>)}
@@ -86,7 +93,9 @@ Login.defaultProps = {
 
 const mapState = state => {
     console.log('atate...',state)
-    return state;
+    return {
+        ...state.user
+    }
 }
 const mapDispatch = dispatch => ({
     login(payload){
