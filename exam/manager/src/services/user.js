@@ -10,3 +10,8 @@ export function login(params) {
     data:params
   })
 }
+export function quesType() {
+  return request({
+    url:'/exam/getQuestionsType',
+  })
+}

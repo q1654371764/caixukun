@@ -1,4 +1,4 @@
-import {login} from '../services'
+import {login,quesType} from '../services'
 import {getToken,setToken} from '../utils/user'
 import { routerRedux } from 'dva/router';
 export default {
@@ -48,6 +48,14 @@ export default {
               payload:data.code === 1 ? 1 : -1
             })
         },
+        *quesType({payload},{call,put}){
+          let questionType = yield call(quesType)
+          console.log('dataType',questionType)
+          yield put({
+            type:'questype',
+            payload:questionType
+          })
+        },
         *fetch({ payload }, { call, put }) {  // eslint-disable-line
             yield put({ type: 'save' });
         },
@@ -56,6 +64,10 @@ export default {
     reducers: {
       loginData(state, {payload}) {
         return { ...state, isLogin:payload };
+      },
+      questype(state, {payload}) {
+        console.log(payload)
+        return { ...state, data:payload.data,code:payload.code === 1? 1 : 0 };
       },
     },
   

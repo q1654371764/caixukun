@@ -1,19 +1,26 @@
-import React from 'react';
-import styles from './add.css';
-import { Route, Switch } from 'dva/router';
-import { Layout } from 'antd';
+import React, { Component } from 'react'
+import Editor from 'for-editor'
 
-const { Content, Sider } = Layout;
-function Add(props) {
-  return (
-      <div>
-          <p>lalala</p>
-      </div>
-  )
-     
+class Add extends Component {
+  constructor() {
+    super()
+    this.state = {
+      value: ''
+    }
+  }
+
+  handleChange(value) {
+    this.setState({
+      value
+    })
+    console.log(this.state.value)
+  }
+
+  render() {
+    const { value } = this.state
+    return (
+      <Editor value={value} onChange={this.handleChange.bind(this)} />
+    )
+  }
 }
-
-Add.propTypes = {
-};
-
 export default Add

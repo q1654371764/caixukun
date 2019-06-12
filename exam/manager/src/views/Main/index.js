@@ -4,8 +4,8 @@ import { Route, Switch } from 'dva/router';
 import Menu from '../../components/Menu'
 import { Layout } from 'antd';
 import Add from '../Question/add/add.js'
-// import Type from '../Question/type/type'
-// import View from '../Question/view/view'
+import Type from '../Question/type/type'
+import View from '../Question/view/view'
 
 const { Content, Sider } = Layout;
 function IndexPage(props) {
@@ -30,8 +30,8 @@ function IndexPage(props) {
       <Content>
         <Switch>
           <Route path="/questions/add" component={Add}></Route>
-          <Route path="/questions/type" component={null}></Route>
-          <Route path="/questions/view" component={null}></Route>
+          <Route path="/questions/type" component={Type}></Route>
+          <Route path="/questions/view" component={View}></Route>
         </Switch>
       </Content>
     </Layout>
