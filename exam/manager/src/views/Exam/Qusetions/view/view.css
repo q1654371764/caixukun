@@ -1,0 +1,58 @@
+/* *{
+    list-style: none;
+}
+.pin{
+    
+    width: 100%;
+    height: 3800px;
+}
+.contr{
+    width: 100%;
+   
+}
+.contr_tet{
+    width: 95%;
+    height:175px;
+    background: #fff;
+    border-radius: 15px;
+    margin:2.5%;
+}
+.contr_txt{
+    width: 90%;
+    padding:20px 20px;
+    box-sizing: border-box;
+}
+.contr_pink{
+    display: flex;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+.contr_pink>p{
+    margin-top:5px;
+
+}
+.tixing{
+    display: flex;
+}
+.Breadcrumb{
+    width: 95%;
+    height:150px;
+    background: #fff;
+    border-radius: 15px;
+    margin:2.5%;
+    padding:  60px 20px;
+    box-sizing: border-box;
+
+}
+.list{
+    height: 23px;
+    line-height: 35px;
+    display: flex;
+    position: absolute;
+    left: 20%;
+}
+
+.Breadcrumb>span{
+    display: inline-block;
+    margin-top:30px;
+} */

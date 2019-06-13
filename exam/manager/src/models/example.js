@@ -17,6 +17,7 @@ export default {
       yield put({ type: 'save' });
     },
   },
+
   // 同步操作
   reducers: {
     save(state, action) {
