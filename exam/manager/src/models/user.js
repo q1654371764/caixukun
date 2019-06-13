@@ -1,4 +1,4 @@
-import {login,quesType} from '../services'
+import {login,quesType,examType,examSubject,getQusetion,userFormation,addTitle,allTitle} from '../services'
 import {getToken,setToken} from '../utils/user'
 import { routerRedux } from 'dva/router';
 export default {
@@ -39,7 +39,6 @@ export default {
         *login({payload},{call,put}){
             // console.log(login)
             let data = yield call(login,payload)
-            console.log('data',data)
             if(data.code === 1){
               setToken(data.token)
             }
@@ -50,15 +49,51 @@ export default {
         },
         *quesType({payload},{call,put}){
           let questionType = yield call(quesType)
-          console.log('dataType',questionType)
           yield put({
             type:'questype',
             payload:questionType
           })
         },
-        *fetch({ payload }, { call, put }) {  // eslint-disable-line
-            yield put({ type: 'save' });
+        *allQuest({payload},{call,put}){
+          let examaType = yield call(examType)
+          let examasubject = yield call(examSubject)
+          let getQues = yield call(getQusetion)
+          let userId = yield call(userFormation)
+          console.log(examaType,examasubject,getQues,userId)
+          yield put({
+            type:'examtype',
+            payload:examaType,
+          })
+          yield put({
+            type:'examsub',
+            payload:examasubject,
+          })
+          yield put({
+            type:'getQues',
+            payload:getQues,
+          })
+          yield put({
+            type:'useid',
+            payload:userId,
+          })
         },
+        *addtitle({payload},{call,put}){
+          // console.log(login)
+          let data = yield call(addTitle,payload)
+          console.log(data)
+          yield put({
+            type:'addtit',
+            payload:data
+          })
+      },
+      *alltitle({payload},{call,put}){
+        let data = yield call(allTitle)
+        console.log(data)
+        yield put({
+          type:'allTit',
+          payload:data
+        })
+      },
     },
     // 同步操作
     reducers: {
@@ -66,8 +101,25 @@ export default {
         return { ...state, isLogin:payload };
       },
       questype(state, {payload}) {
-        console.log(payload)
-        return { ...state, data:payload.data,code:payload.code === 1? 1 : 0 };
+        return { ...state, data:payload.data};
+      },
+      examtype(state, {payload}) {
+        return { ...state, data1:payload.data,code1:payload.code === 1? 1 : 0 };
+      },
+      examsub(state, {payload}) {
+        return { ...state, data2:payload.data};
+      },
+      getQues(state, {payload}) {
+        return { ...state, data3:payload.data};
+      },
+      useid(state, {payload}) {
+        return { ...state, data4:payload.data,code4:payload.code === 1? 1 : 0 };
+      },
+      addtit(state, {payload}) {
+        return { ...state, data5:payload.msg};
+      },
+      allTit(state, {payload}) {
+        return { ...state, data6:payload.data};
       },
     },
   

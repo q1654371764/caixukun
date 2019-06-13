@@ -5,5 +5,8 @@
             "libraryDirectory":"es",
             "style":true
         }]
+    ],
+    "extraBabelPlugins": [
+        ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]
     ]
 }

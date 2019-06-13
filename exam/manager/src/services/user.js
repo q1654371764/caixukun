@@ -15,3 +15,35 @@ export function quesType() {
     url:'/exam/getQuestionsType',
   })
 }
+export function examType() {
+  return request({
+    url:'/exam/examType',
+  })
+}
+export function examSubject() {
+  return request({
+    url:'/exam/subject',
+  })
+}
+export function getQusetion() {
+  return request({
+    url:'/exam/getQuestionsType',
+  })
+}
+export function userFormation() {
+  return request({
+    url:'/user/userInfo',
+  })
+}
+export function addTitle(params) {
+  return request({
+    url:'/exam/questions',
+    method:'POST',
+    data:params
+  })
+}
+export function allTitle() {
+  return request({
+    url:'exam/questions/new',
+  })
+}

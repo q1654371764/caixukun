@@ -30,6 +30,8 @@ body,html{
   align-items: center;
   border-bottom: 1px solid #ccc;
   box-shadow: 1px 1px 3px #888888;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 .header_left{
   width: 150px;
