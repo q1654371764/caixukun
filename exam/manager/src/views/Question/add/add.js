@@ -37,6 +37,10 @@ function AddType(props) {
   const [data, setdata] = React.useState({ 
     useId:''
   });
+  const [dataTit, dataTitXiu] = React.useState({ 
+    dataName:'添加试题'
+  });
+
   useState(()=>{
    
   },[])
@@ -56,6 +60,9 @@ function AddType(props) {
     if(pathName != 'undefined'){
       let arr = props.data6.filter(item=>item.questions_id === pathName)
       console.log(arr)
+      dataTitXiu({
+        dataName:'修改试题'
+      })
       setdata({useId:arr[0]})
     }
    
@@ -120,7 +127,7 @@ function AddType(props) {
   }
     return (<div className={styles.add}>
       <div className={styles.title}>
-          <p>添加试题</p>
+          <p>{dataTit.dataName}</p>
       </div>
       <div className={styles.content}>
         <p>题目信息</p>
@@ -155,7 +162,7 @@ function AddType(props) {
         </Select>
         <p>答案信息</p>
         <Editor onChange={formation} value={data.useId?data.useId.questions_answer:questionsanswer.quesAnswer}/>
-        <button onClick={subTi}>提交</button>
+        <button onClick={subTi} className={styles.submitt}>提交</button>
       </div>
       
     </div>)

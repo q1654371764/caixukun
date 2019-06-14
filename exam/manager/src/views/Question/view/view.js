@@ -1,8 +1,8 @@
-import React,{useEffect} from "react"
+import React,{useState,useEffect} from "react"
 import style from "./view.css"
 import {connect} from "dva"
 import { Layout, Breadcrumb, Select, Row, Col, Button, Icon, Tag ,Table} from 'antd';
-import { withRouter, Link } from 'dva/router';
+import { Link } from 'dva/router';
 
 const { Content } = Layout;
 const { Option } = Select;
@@ -12,7 +12,7 @@ const columns = function(props){
     {
       dataIndex: '',
       key: 'name', 
-      render: (text,index) => (
+      render: (text) => (
         <div  onClick={()=>{
           console.log(props)
           let pathname = '/questions/detail?uid='+text.questions_id
@@ -22,7 +22,7 @@ const columns = function(props){
             <h4>
                 <Tag color="blue">{text.questions_type_text}</Tag>
                 <Tag color="geekblue">{text.subject_text}</Tag>
-                <Tag color="gold">gold</Tag>
+                <Tag color="gold">{text.exam_name}</Tag>
             </h4>
             <a href="">{text.user_name}</a>
             <a href="">发布</a>
@@ -31,7 +31,7 @@ const columns = function(props){
     },
     {
       key: 'action',
-      render: (text, props) => (
+      render: (text) => (
         <span style={{position:"absolute",right:20}}>
           <Link to={`/questions/add?id=${text.questions_id}`}>编辑</Link>
         </span>
@@ -40,8 +40,9 @@ const columns = function(props){
   ];
 }
 
-  
 function Look(props) {
+  const [exam, examID] = useState('');
+  const [questionstype, questionsType] = useState('');
    useEffect(()=>{
      let {examType,allTit} = props;
     console.log(props)
@@ -76,36 +77,50 @@ function Look(props) {
                 <Row>
                     <Col lg={{ span: 6, offset: 2 }} span={8}>
                         考试类型:<Select
-                            defaultValue='8sc5d7-7p5f9e-cb2zii-ahe5i'
+                            defaultValue=''
                             style={{ width: 120 }}
                             dropdownRender={menu => (
                                 <div>
                                     {menu}
                                 </div>
                             )}
-                        >
+                            onChange={(value)=>{
+                              examID({exam:value})
+                              console.log(value)
+                            }}>
                           {
                             props.data1 && props.data1.map((item,index)=><Option key={index} value={item.exam_id}>{item.exam_name}</Option>)
                           }
                         </Select>
                     </Col>
                     <Col span={8}>题目类型:<Select
-                        defaultValue='774318-730z8m'
+                        defaultValue=''
                         style={{ width: 120 }}
                         dropdownRender={menu => (
                             <div>
                                 {menu}
                             </div>
                         )}
-                    >
+                        onChange={(value)=>{
+                          questionsType({questionstype:value})
+                          console.log(value)
+                        }}>
                           {
                             props.data3 && props.data3.map((item,index)=><Option key={index} value={item.questions_type_id}>{item.questions_type_text}</Option>)
                           }
                         
                     </Select></Col>
-                    <Col span={8}>
+                    <Col span={8} onClick={()=>{
+                              let {searchget} = props;
+                              console.log(props)
+                              searchget({
+                                exam_id:exam.exam,
+                                questions_type_id:questionstype.questionstype
+                              })
+                              console.log(exam.exam,questionstype.questionstype)
+                            }}>
                         <Button className={style.btn} type="primary">
-                            <Icon type="search" />查询
+                            <Icon type="search"/>查询
                     </Button>
                     </Col>
                 </Row>
@@ -144,6 +159,12 @@ class MyTag extends React.Component {
       type: 'user/alltitle',
     })
   },
+  searchget(payload){
+    dispatch({
+      type:"user/searChget",
+      payload,
+    })
+  }
  })
 export default connect(MapState,MapDispatch)(Look)
 

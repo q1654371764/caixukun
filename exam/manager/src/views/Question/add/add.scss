@@ -6,7 +6,7 @@
     height: 10%;
 }
 .title p{
-    font-size: 40px;
+    font-size: 30px;
     margin: 20px;
 }
 .content{
@@ -24,6 +24,15 @@
     height: 40px;
     margin-left: 20px;
     border: 1px solid #e6e6e6;
+}
+.submitt{
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background: blue;
+    border: 0;
+    color: white;
 }
 :gloabl{
     .edit{

@@ -13,7 +13,7 @@ function Type(props) {
   const [config, confirml] = React.useState({ 
     confirmLoading: false,
   });
-  
+  const [inp,inpValue] = useState('')
   useState(()=>{
    
   },[])
@@ -30,8 +30,17 @@ function Type(props) {
     })
   };
   let handleOk = () => {
+    let {addType} = props;
+    if(inp.inp){
+      addType({
+        text:inp.inp,
+        sort:props.data.length + 1
+      })
+    }
     
-    console.log(2)
+    visibleli({
+      flag:false
+    })
   };
   let showModal = () => {
     visibleli({
@@ -45,13 +54,15 @@ function Type(props) {
         <div className={styles.content}>
             <button onClick={showModal}>添加类型</button>
             <Modal
-            title="Title"
+            title="添加类型"
             visible={visib.flag}
             onOk={handleOk}
             confirmLoading={config.confirmLoading}
             onCancel={handleCancel}
           >
-            <input type="text"/>
+            <input type="text" value={inp.inp} onChange={(event)=>{
+              inpValue({inp:event.target.value})
+            }} className={styles.inpp}/>
         </Modal>
             <div className={styles.con}>
               <div className={styles.top}>
@@ -93,6 +104,12 @@ const mapDisaptchToProps = dispatch=>{
     quesType(){
       dispatch({
         type: 'user/quesType',
+      })
+    },
+    addType(payload){
+      dispatch({
+        type: 'user/addType',
+        payload
       })
     }
   }

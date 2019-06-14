@@ -47,3 +47,15 @@ export function allTitle() {
     url:'exam/questions/new',
   })
 }
+export function searChget(params){
+  return request({
+    url:"/exam/questions/condition?exam_id="+params.exam_id,
+    method:"GET",
+  })
+}
+export function addType(params){
+  return request({
+    url:"/exam/insertQuestionsType?text=" + params.text + '&sort=' + params.sort,
+    method:"GET",
+  })
+}

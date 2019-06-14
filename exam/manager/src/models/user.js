@@ -1,4 +1,4 @@
-import {login,quesType,examType,examSubject,getQusetion,userFormation,addTitle,allTitle} from '../services'
+import {login,quesType,examType,examSubject,getQusetion,userFormation,addTitle,allTitle,searChget,addType} from '../services'
 import {getToken,setToken} from '../utils/user'
 import { routerRedux } from 'dva/router';
 export default {
@@ -94,6 +94,22 @@ export default {
           payload:data
         })
       },
+      *searChget({payload},{call,put}){
+        let data = yield call(searChget,payload);
+        console.log(data)
+        yield put({
+          type:"getExamAll",
+          payload:data
+        })
+      },
+      *addType({payload},{call,put}){
+        let data = yield call(addType,payload);
+        console.log(data)
+        // yield put({
+        //   type:"getExamAll",
+        //   payload:data
+        // })
+      }
     },
     // 同步操作
     reducers: {
@@ -121,6 +137,9 @@ export default {
       allTit(state, {payload}) {
         return { ...state, data6:payload.data};
       },
+      getExamAll(state, {payload}) {
+        return { ...state, data6:payload.code===1?payload.data:[]};
+      }
     },
   
   };
