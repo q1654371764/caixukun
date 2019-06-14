@@ -13,7 +13,7 @@ export default {
     subscriptions: {
       setup({ dispatch, history }) {  // eslint-disable-line
         return history.listen(({pathname}) => {
-          // console.log('pathname',pathname)
+          console.log('pathname',pathname)
           if(pathname.indexOf('/login') === -1){
 
             if (!getToken()){

@@ -2,16 +2,22 @@ import React,{useEffect} from "react"
 import style from "./view.css"
 import {connect} from "dva"
 import { Layout, Breadcrumb, Select, Row, Col, Button, Icon, Tag ,Table} from 'antd';
+import { withRouter, Link } from 'dva/router';
 
 const { Content } = Layout;
 const { Option } = Select;
 const { CheckableTag } = Tag;
-const columns = [
+const columns = function(props){
+  return [
     {
       dataIndex: '',
       key: 'name', 
       render: (text,index) => (
-        <div key={index}>
+        <div  onClick={()=>{
+          console.log(props)
+          let pathname = '/questions/detail?uid='+text.questions_id
+          props.history.push(pathname)
+        }}>
             <h4>{text.title}</h4>
             <h4>
                 <Tag color="blue">{text.questions_type_text}</Tag>
@@ -25,14 +31,16 @@ const columns = [
     },
     {
       key: 'action',
-      render: (text, record) => (
+      render: (text, props) => (
         <span style={{position:"absolute",right:20}}>
-          <a href="">编辑</a>
+          <Link to={`/questions/add?id=${text.questions_id}`}>编辑</Link>
         </span>
       ),
     },
   ];
+}
 
+  
 function Look(props) {
    useEffect(()=>{
      let {examType,allTit} = props;
@@ -40,7 +48,6 @@ function Look(props) {
     examType()
     allTit()
    },[])
-   console.log(props)
     return (
         <Layout style={{ padding: '0 24px 24px' }}>
             <Breadcrumb style={{ margin: '16px 0' }}>
@@ -58,7 +65,7 @@ function Look(props) {
             >
                 <Row className={style.row}>
                     <Col span={2}>课程类型:</Col>
-                    <Col span={18}>
+                    <Col span={40}>
                         <div>
                           {
                             props.data2 && props.data2.map((item,index)=><MyTag key={index}>{item.subject_text}</MyTag>)
@@ -102,10 +109,11 @@ function Look(props) {
                     </Button>
                     </Col>
                 </Row>
-                <Table className={style.table} columns={columns} dataSource={props.data6} />
+                <Table className={style.table} columns={columns(props)} dataSource={props.data6} />
             </Content>
         </Layout>
     )
+    
 }
 class MyTag extends React.Component {
     state = { checked: false };
@@ -113,7 +121,6 @@ class MyTag extends React.Component {
     handleChange = checked => {
       this.setState({ checked });
     };
-  
     render() {
       return (
         <CheckableTag {...this.props} checked={this.state.checked} onChange={this.handleChange} />

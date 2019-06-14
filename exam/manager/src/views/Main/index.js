@@ -6,6 +6,7 @@ import { Layout } from 'antd';
 import Add from '../Question/add/add.js'
 import Type from '../Question/type/type'
 import View from '../Question/view/view'
+import Detail from '../Question/detail/index'
 
 const { Content, Sider } = Layout;
 function IndexPage(props) {
@@ -32,6 +33,7 @@ function IndexPage(props) {
           <Route path="/questions/add" component={Add}></Route>
           <Route path="/questions/type" component={Type}></Route>
           <Route path="/questions/view" component={View}></Route>
+          <Route path="/questions/detail" component={Detail}></Route>
         </Switch>
       </Content>
     </Layout>

@@ -21,17 +21,20 @@ function AddType(props) {
   });
   //试题类型id
   const [questionstypeid, questionsTypeid] = React.useState({ 
-    questypeId:''
+    questypeId:'774318-730z8m'
   });
   //试题的标题
   const [titl, Titlee] = React.useState({ 
-    title:'774318-730z8m'
+    title:''
   });
   //题目答案
   const [questionsanswer, questionsAnswer] = React.useState({ 
     quesAnswer:''
   });
   const [userid, userId] = React.useState({ 
+    useId:''
+  });
+  const [data, setdata] = React.useState({ 
     useId:''
   });
   useState(()=>{
@@ -48,6 +51,16 @@ function AddType(props) {
     }else{
       examType()
     }
+    let pathName = decodeURIComponent(props.history.location.search.split('=')[1])
+    console.log(pathName)
+    if(pathName != 'undefined'){
+      let arr = props.data6.filter(item=>item.questions_id === pathName)
+      console.log(arr)
+      setdata({useId:arr[0]})
+    }
+   
+    // props.history.replace(pathName)
+
   }, [props]);
 
   function subTi(){
@@ -62,10 +75,9 @@ function AddType(props) {
         questions_answer:questionsanswer.quesAnswer,
         title:titl.title,
       })
-      
-      // if(props.data5){
-      //   message.success(props.data5.msg);
-      // }
+      if(props.data5){
+        message.success(props.data5);
+      }
       console.log(props)
     }
     
@@ -113,14 +125,16 @@ function AddType(props) {
       <div className={styles.content}>
         <p>题目信息</p>
         <p>题干</p>
-        <input type="text" placeholder="请输入题目标题，不超过20个字" className={styles.inp} onChange={(event)=>{
+        <input type="text" placeholder="请输入题目标题，不超过20个字" className={styles.inp} value={data.useId?data.useId.title:questionsstem.questID} onChange={(event)=>{
           questionsStem({ 
             questID:event.target.value
           })
 
         }} />
         <p>题目主题</p>
-        <Editor onChange={zhuti} />
+        <div className="edit">
+          <Editor onChange={zhuti} value={data.useId?data.useId.questions_stem:titl.title}/> 
+        </div>
         <p>请选择考试类型</p>
         <Select defaultValue='8sc5d7-7p5f9e-cb2zii-ahe5i' style={{ width: 120 }} onChange={type}>
           {
@@ -140,7 +154,7 @@ function AddType(props) {
           }
         </Select>
         <p>答案信息</p>
-        <Editor onChange={formation} />
+        <Editor onChange={formation} value={data.useId?data.useId.questions_answer:questionsanswer.quesAnswer}/>
         <button onClick={subTi}>提交</button>
       </div>
       

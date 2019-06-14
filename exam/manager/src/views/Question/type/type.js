@@ -4,9 +4,9 @@ import styles from './type.css';
 import { Modal} from 'antd';
 
 function Type(props) {
-  const [userInfo, setUserInfo] = React.useState({ 
-    data: ''
-  });
+  // const [userInfo, setUserInfo] = React.useState({ 
+  //   data: ''
+  // });
   const [visib, visibleli] = React.useState({ 
     flag: false 
   });
