@@ -34,10 +34,12 @@
     border: 0;
     color: white;
 }
+.edit{
+    height: 150px;
+    overflow-y: auto;
+}
 :gloabl{
-    .edit{
-        height: 150px;
-    }
+    
     .for-container{
         height: 200px !important;
     }

@@ -7,6 +7,9 @@ import Add from '../Question/add/add.js'
 import Type from '../Question/type/type'
 import View from '../Question/view/view'
 import Detail from '../Question/detail/index'
+import List from '../ExamManer/QuestionList/index'
+import ExamDetail from '../ExamManer/ExamDetail/examdetail'
+import UserShow from '../User/userShow/usershow'
 
 const { Content, Sider } = Layout;
 function IndexPage(props) {
@@ -34,6 +37,10 @@ function IndexPage(props) {
           <Route path="/questions/type" component={Type}></Route>
           <Route path="/questions/view" component={View}></Route>
           <Route path="/questions/detail" component={Detail}></Route>
+          <Route path="/exam/list" component={List}></Route>
+          <Route path="/exam/ExamDetail" component={ExamDetail}></Route>
+          <Route path="/user/show" component={UserShow}></Route>
+          
         </Switch>
       </Content>
     </Layout>

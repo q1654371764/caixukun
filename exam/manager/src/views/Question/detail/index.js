@@ -1,12 +1,11 @@
 import React,{useState,useEffect} from 'react';
 import { connect } from 'dva';
 import Styles from './index.css';
-import { Layout, Breadcrumb, Select, Row, Col, Button, Icon, Tag ,Table} from 'antd';
-const { Header, Content, Sider } = Layout;
+import { Layout, Breadcrumb, Tag} from 'antd';
+const { Content } = Layout;
 function Detail(props) {
     let [data,setdata] = useState({arr:''})
   useEffect(()=>{
-    let {quesType} = props;
     let uid = props.history.location.search.split('=')[1]
     console.log(props.data6.filter(item=>item.questions_id === uid))
     let datas = props.data6.filter(item=>item.questions_id === uid)

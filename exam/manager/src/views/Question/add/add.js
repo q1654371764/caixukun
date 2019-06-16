@@ -139,7 +139,7 @@ function AddType(props) {
 
         }} />
         <p>题目主题</p>
-        <div className="edit">
+        <div className={styles.edit}>
           <Editor onChange={zhuti} value={data.useId?data.useId.questions_stem:titl.title}/> 
         </div>
         <p>请选择考试类型</p>
@@ -161,7 +161,9 @@ function AddType(props) {
           }
         </Select>
         <p>答案信息</p>
-        <Editor onChange={formation} value={data.useId?data.useId.questions_answer:questionsanswer.quesAnswer}/>
+        <div className={styles.edit}>
+          <Editor onChange={formation} value={data.useId?data.useId.questions_answer:questionsanswer.quesAnswer}/>  
+        </div>
         <button onClick={subTi} className={styles.submitt}>提交</button>
       </div>
       
