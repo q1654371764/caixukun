@@ -10,6 +10,7 @@ import Detail from '../Question/detail/index'
 import List from '../ExamManer/QuestionList/index'
 import ExamDetail from '../ExamManer/ExamDetail/examdetail'
 import UserShow from '../User/userShow/usershow'
+import ClassManager from '../RoomManager/RoomMan/roomMan'
 
 const { Content, Sider } = Layout;
 function IndexPage(props) {
@@ -40,7 +41,7 @@ function IndexPage(props) {
           <Route path="/exam/list" component={List}></Route>
           <Route path="/exam/ExamDetail" component={ExamDetail}></Route>
           <Route path="/user/show" component={UserShow}></Route>
-          
+          <Route path="/class/classRoom" component={ClassManager}></Route>
         </Switch>
       </Content>
     </Layout>

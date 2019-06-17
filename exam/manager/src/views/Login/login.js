@@ -71,7 +71,7 @@ function login(props) {
         登陆
       </Button>
     </Form.Item>
-  </Form>;
+  </Form>
     </div>
     </div>
   }
