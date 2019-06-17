@@ -1,13 +1,14 @@
 import React from 'react';
 import { Router, Route, Switch} from 'dva/router';
-import LoginPage from './views/Login/Login.js';
-import MapStateToProps from "./views/Exam/index"
+import IndexDetail from './views/Main/index'
+import Login from './views/Login/login';
+
 function RouterConfig({ history }) {
   return (
     <Router history={history}>
       <Switch>
-        <Route path="/login" component={LoginPage} />
-        <Route path="/" component={MapStateToProps} />
+        <Route path="/login" component={Login} />
+        <Route path="/" component={IndexDetail} />
       </Switch>
     </Router>
   );

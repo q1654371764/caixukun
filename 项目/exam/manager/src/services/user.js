@@ -1,61 +1,70 @@
 import request from '../utils/request';
-import { getToken } from "../utils/user"
-//code码
-let str = getToken("key")
-console.log(str)
-
-//登录
 export function login(params) {
   return request({
-    url: "/user/login",
-    method: "POST",
-    data: params
+    url:'/user/login',
+    method:'POST',
+    data:params
   })
 }
-
-//试题分类
-export function type() {
+export function quesType() {
   return request({
-    url: "/exam/getQuestionsType",
-    method: "GET"
+    url:'/exam/getQuestionsType',
   })
 }
-
-//查看试题
-export function view() {
-  return request({
-    url: "/exam/exam",
-    method: "GET"
-  })
-}
-
-//获取试题类型
 export function examType() {
   return request({
-    url: '/exam/examType',
-    method: 'GET',
+    url:'/exam/examType',
   })
 }
-
-//获取考试类型
-export function subject() {
+export function examSubject() {
   return request({
-    url: '/exam/subject',
-    method: 'GET',
+    url:'/exam/subject',
   })
 }
-
-//获取考试类型
-export function getQuestionsType() {
+export function getQusetion() {
   return request({
-    url: '/exam/getQuestionsType',
-    method: 'GET',
+    url:'/exam/getQuestionsType',
   })
 }
-//获取所有的试题
-export function questions() {
+export function userFormation() {
   return request({
-    url: '/exam/questions/new',
-    method: 'GET',
+    url:'/user/userInfo',
+  })
+}
+export function addTitle(params) {
+  return request({
+    url:'/exam/questions',
+    method:'POST',
+    data:params
+  })
+}
+export function allTitle() {
+  return request({
+    url:'exam/questions/new',
+  })
+}
+export function searChget(params){
+  return request({
+    url:"/exam/questions/condition?exam_id="+params.exam_id,
+    method:"GET",
+  })
+}
+export function addType(params){
+  return request({
+    url:"/exam/insertQuestionsType?text=" + params.text + '&sort=' + params.sort,
+    method:"GET",
+  })
+}
+export function WaitClass(){
+  return request({
+    url:"/manger/grade",
+    method:"GET"
+  })
+}
+///exam/student
+export function Classmate(payload){
+  return request({
+    url:`/exam/student?grade_id=${payload}`,
+    method:"GET"
   })
 }
