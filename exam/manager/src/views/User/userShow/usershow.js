@@ -7,11 +7,13 @@ function Usershow(props) {
     let {user} = props
     let [data,setdata] = useState([])
     let [username,setusername] = useState('用户数据')
+    let [eve,newEve] = React.useState({
+      arr:['用户名','密码','身份']
+    })
     
     useEffect(()=>{
         console.log(props)
       if(props.data1){
-          console.log(1)
         setdata(props.data1.action1)
       }else{
         user()
@@ -21,77 +23,71 @@ function Usershow(props) {
     
     let columns = [
         {
-            title: '用户数据',
             key: 'action',
-            render: (text) => (
-              <span className={style.list}>
-                <span>{text.identity_text}</span>
+            render: (text) => (<div className={style.list}>
                 <span>{text.user_name}</span>
-              </span>
+                <span>{text.user_pwd}</span>
+                <span>{text.identity_text}</span>
+              </div>
             ),
           },
     ]
     let columns2 = [
       {
-          title: '身份数据',
           key: 'action',
           render: (text) => (
-            <span className={style.list}>
-              <span>{text.identity_id}</span>
+            <div className={style.list}>
               <span>{text.identity_text}</span>
-            </span>
+
+            </div>
           ),
         },
   ]
   let columns3 = [
     {
-        title: 'api接口权限',
         key: 'action',
         render: (text) => (
-          <span className={style.list}>
-            <span>{text.api_authority_id}</span>
+          <div className={style.list}>
             <span>{text.api_authority_text}</span>
             <span>{text.api_authority_url}</span>
-          </span>
+            <span>{text.api_authority_method}</span>
+          </div>
         ),
       },
 ]
 let columns4 = [
   {
-      title: '身份和api接口关系',
       key: 'action',
       render: (text) => (
-        <span className={style.list}>
-          <span>{text.identity_api_authority_relation_id}</span>
+        <div className={style.list}>
           <span>{text.identity_text}</span>
           <span>{text.api_authority_text}</span>
-        </span>
+          <span>{text.api_authority_url}</span>
+          <span>{text.api_authority_method}</span>
+
+        </div>
       ),
     },
 ]
 let columns5 = [
   {
-      title: '试图接口权限',
-      key: 'action',
       render: (text) => (
-        <span className={style.list}>
-                <span>{text.identity_text}</span>
-                <span>{text.user_name}</span>
-              </span>
+          <div className={style.list}>
+            <span>{text.identity_text}</span>
+            <span>{text.user_name}</span>
+          </div>
       ),
     },
 ]
 let columns6 = [
   {
-      title: '身份和试图接口权限关系',
       key: 'action',
       render: (text) => (
-        <span className={style.list}>
-          <span>{text.identity_view_authority_relation_id}</span>
+        <div className={style.list}>
           <span>{text.identity_text}</span>
           <span>{text.view_authority_text}</span>
           <span>{text.view_id}</span>
-        </span>
+        </div>
       ),
     },
 ]
@@ -102,39 +98,62 @@ let [list,setlist] = useState(columns)
         <Radio.Group defaultValue="a" buttonStyle="solid">
             <Radio.Button value="a" onClick={()=>{
               setdata(props.data1.action1)
+              newEve({
+                arr:['用户名','密码','身份']
+              })
               setusername('用户数据')
               setlist(columns)
             }}>用户数据</Radio.Button>
             <Radio.Button value="b" onClick={()=>{
               setdata(props.data1.action2)
+              newEve({
+                arr:['身份名称']
+              })
               setusername('身份数据')
               setlist(columns2)
             }}>身份数据</Radio.Button>
             <Radio.Button value="c" onClick={()=>{
               setdata(props.data1.action3)
+              newEve({
+                arr:['api权限名称','api权限url','api权限方法']
+              })
               setusername('api接口权限')
               setlist(columns3)
             }}>api接口权限</Radio.Button>
             <Radio.Button value="d" onClick={()=>{
               setdata(props.data1.action4)
+              newEve({
+                arr:['身份名称','api权限名称','api权限url','api权限方法']
+              })
               setusername('身份和api接口关系')
               setlist(columns4)
             }}>身份和api接口关系</Radio.Button>
             <Radio.Button value="e" onClick={()=>{
               setdata(props.data1.action5)
-              setusername('视图接口权限')
+              newEve({
+                arr:['视图权限名称','视图id']
+              })
+              setusername('视图接口权限') 
               setlist(columns5)
             }}>试图接口权限</Radio.Button>
             <Radio.Button value="f" onClick={()=>{
               setdata(props.data1.action6)
+              newEve({
+                arr:['身份','视图名称','视图id']
+              })
               setusername('身份和视图权限关系')
               setlist(columns6)
             }}>身份和试图权限关系</Radio.Button>
         </Radio.Group>
       </div>
-      <div>
+      <div className={style.quan}>
         {console.log(props)}
         <Table columns={list} dataSource={data} />  
+        <div className={style.title}>
+          {
+            eve.arr.map((item,index)=><span key={index}>{item}</span>)
+          }
+        </div>
       </div>
   </div>
 }

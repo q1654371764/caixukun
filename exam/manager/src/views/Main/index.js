@@ -11,6 +11,8 @@ import List from '../ExamManer/QuestionList/index'
 import ExamDetail from '../ExamManer/ExamDetail/examdetail'
 import UserShow from '../User/userShow/usershow'
 import ClassManager from '../RoomManager/RoomMan/roomMan'
+import AddUser from '../User/AddUser/Adduser'
+import StudentMan from '../RoomManager/StudentMan/SutdentMan'
 
 const { Content, Sider } = Layout;
 function IndexPage(props) {
@@ -42,6 +44,9 @@ function IndexPage(props) {
           <Route path="/exam/ExamDetail" component={ExamDetail}></Route>
           <Route path="/user/show" component={UserShow}></Route>
           <Route path="/class/classRoom" component={ClassManager}></Route>
+          <Route path="/user/add" component={AddUser}></Route>
+          <Route path="/class/student" component={StudentMan}></Route>
+          
         </Switch>
       </Content>
     </Layout>
