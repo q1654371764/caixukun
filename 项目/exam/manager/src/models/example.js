@@ -8,6 +8,7 @@ export default {
 
   subscriptions: {
     setup({ dispatch, history }) {  // eslint-disable-line
+      
     },
   },
 
@@ -17,6 +18,7 @@ export default {
       yield put({ type: 'save' });
     },
   },
+
   // 同步操作
   reducers: {
     save(state, action) {
