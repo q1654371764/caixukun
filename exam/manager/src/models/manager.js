@@ -1,4 +1,4 @@
-import {allQuestion,ExamDetail,userAll1,userAll2,userAll3,userAll4,userAll5,userAll6} from '../services'
+import {allQuestion,ExamDetail,userAll1,userAll2,userAll3,userAll4,userAll5,userAll6,WaitClass,Classmate} from '../services'
 
 export default {
     // 命名空间
@@ -49,7 +49,29 @@ export default {
                 action5:data5.data,
                 action6:data6.data
             });
-        }
+        },
+        *WaitClass({ payload }, { call, put }) {
+          let data = yield call(WaitClass);
+          yield put({
+            type: "getClass",
+            payload: data,
+    
+          })
+          console.log(data)
+        },
+        *Classmate({ payload }, { call, put }) {
+          console.log(payload)
+          let data8 = yield call(Classmate, payload);
+          console.log(data8)
+          yield put({
+            type: "getClassmate",
+            payload: data8.exam,
+    
+          })
+          // console.log(exam.exam)
+        },
+    
+    
     },
     // 同步操作
     reducers: {
@@ -63,6 +85,14 @@ export default {
           console.log(action)
         return { ...state, data1:action};
       },
+      getClass(state, { payload }) {
+        return { ...state, data7: payload.code === 1 ? payload.data : [] };
+      },
+      getClassmate(state, { payload }) {
+        // console.log(payload.code)
+        return { ...state, data8: payload };
+      },
+  
     },
   
   };

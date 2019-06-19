@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import { connect } from 'dva';
-import { Typography,Radio ,Table, Divider, Tag,Input,Select ,Button} from 'antd';
-import style from './StudentMan.css'
+import { Typography,Table,Input,Select ,Button} from 'antd';
+import style from './StudentMan.scss'
 const { Title } = Typography;
 const { Option } = Select;
 function ClassStudent(props) {
@@ -16,16 +16,16 @@ function ClassStudent(props) {
 
 
     useEffect(function(){
-        if(props.show.data && props.class.classData){
-            setdata(props.show.data.action)
-            setarr(props.show.data.action)
-            setroom(props.class.roomData)
-            setclass(props.class.classData)
+        if(props.data2 && props.classData){
+            setdata(props.data2.action)
+            setarr(props.data2.action)
+            setroom(props.roomData)
+            setclass(props.classData)
         }else{
             Getstudent()
             getGrade()
         }
-    },[props.show.data])
+    },[props])
     let columns = [
         {
             render: (text) =>(
@@ -73,7 +73,7 @@ function ClassStudent(props) {
                 }}
             >
                 {
-                    alass&&alass.map((item,index)=>{
+                    alass && alass.map((item,index)=>{
                         return <Option value={item.grade_name}>{item.grade_name}</Option>
                     })
                 }
@@ -92,9 +92,9 @@ function ClassStudent(props) {
                     }
                     setdata(obj)
                 }else if(select1){
-                    setdata(arr.filter(item=>item.room_text == select1))
+                    setdata(arr.filter(item=>item.room_text === select1))
                 }else if(select2){
-                    setdata(arr.filter(item=>item.grade_name == select2))
+                    setdata(arr.filter(item=>item.grade_name === select2))
                 }else{
                     setdata(arr)
                 }
@@ -105,8 +105,9 @@ function ClassStudent(props) {
                 setval('')
             }}>重置</Button>
         </div>
-        <div>
-            <div className={style.top}>
+        <div className={style.tou}>
+            <Table columns={columns} dataSource={data}/>
+            <div className={style.top2}>
                 <div>姓名</div>
                 <div>学号</div>
                 <div>班级</div>
@@ -114,8 +115,6 @@ function ClassStudent(props) {
                 <div>密码</div>
                 <div>操作</div>
             </div>
-            {console.log(props)}
-            <Table columns={columns} dataSource={data} />
         </div>
     </div>
 }
@@ -130,7 +129,7 @@ function ClassStudent(props) {
   }
 const mapStateToProps = state=>{
   return {
-    ...state
+    ...state.room
   }
 }
 
@@ -138,18 +137,18 @@ const mapDisaptchToProps = dispatch=>{
   return {
     Getstudent(){
         dispatch({
-            type:'show/Allstudent'
+            type:'room/Allstudent'
         })
     },
     Delete(payload){
         dispatch({
-            type:'show/delstudent',
+            type:'room/delstudent',
             payload
         })
     },
     getGrade(){
         dispatch({
-          type:"class/gtade", //获取班级展示
+          type:"room/gtade", //获取班级展示
         })
     }
   }

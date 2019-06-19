@@ -41,3 +41,16 @@ export function userAll6(){
         url:'/user/identity_view_authority_relation',
     })
 }
+export function WaitClass(){
+    return request({
+      url:"/manger/grade",
+      method:"GET"
+    })
+  }
+  export function Classmate(payload){
+    return request({
+      url:`/exam/student?grade_id=${payload}`,
+      method:"GET"
+    })
+  }
+  

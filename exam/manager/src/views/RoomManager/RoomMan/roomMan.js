@@ -52,7 +52,7 @@ function RoomMan(props) {
             <p>教室管理</p>
         </div>
         <div className={styles.content}>
-            <button onClick={showModal}>+添加教室</button>
+            <button onClick={showModal} className={styles.evee}>+添加教室</button>
             <Modal
             title='添加班级'
             visible={visib.flag}

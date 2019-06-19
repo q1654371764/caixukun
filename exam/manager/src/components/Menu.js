@@ -1,14 +1,17 @@
 import React from 'react';
 import { Menu, Icon } from 'antd';
 import { Link } from 'dva/router';
+import {injectIntl} from 'react-intl'
 
 const { SubMenu } = Menu;
 
 function MenuComp(props){
-
+    console.log(props.intl);
   return <Menu
     theme="dark"
     mode="inline"
+    defaultSelectedKeys={['1']}
+    defaultOpenKeys={['questions']}
     style={{ height: '100%', borderRight: 0 }}
   >
     <SubMenu
@@ -16,17 +19,17 @@ function MenuComp(props){
       title={
         <span>
           <Icon type="user" />
-          试题管理
+          {props.intl.formatMessage({id: 'router.questions'})}
         </span>
       }>
       <Menu.Item key="1">
-        <Link to="/questions/add">添加试题</Link>
+        <Link to="/questions/add">{props.intl.formatMessage({id: 'router.questions.add'})}</Link>
       </Menu.Item>
       <Menu.Item key="2">
-        <Link to="/questions/type">试题分类</Link>
+        <Link to="/questions/type">{props.intl.formatMessage({id: 'router.questions.type'})}</Link>
       </Menu.Item>
       <Menu.Item key="3">
-        <Link to="/questions/view">查看试题</Link>
+        <Link to="/questions/view">{props.intl.formatMessage({id: 'router.questions.view'})}</Link>
       </Menu.Item>
     </SubMenu>
     <SubMenu
@@ -34,15 +37,15 @@ function MenuComp(props){
         title={
         <span>
             <Icon type="user" />
-            用户管理
+            {props.intl.formatMessage({id: 'router.questions.user'})}
         </span>
         }
     >
         <Menu.Item key="4">
-            <Link to="/user/add">添加用户</Link>
+            <Link to="/user/add">{props.intl.formatMessage({id: 'router.questions.adduser'})}</Link>
         </Menu.Item>
         <Menu.Item key="5">
-            <Link to="/user/show">用户展示</Link>
+            <Link to="/user/show">{props.intl.formatMessage({id: 'router.questions.usershow'})}</Link>
         </Menu.Item>
     </SubMenu>
     <SubMenu
@@ -50,15 +53,15 @@ function MenuComp(props){
         title={
         <span>
             <Icon type="schedule" />
-            考试管理
+            {props.intl.formatMessage({id: 'router.questions.examMan'})}
         </span>
         }
     >
         <Menu.Item key="6">
-            <Link to="/exam/add">添加考试</Link>
+            <Link to="/exam/add">{props.intl.formatMessage({id: 'router.questions.addExam'})}</Link>
         </Menu.Item>
         <Menu.Item key="7">
-            <Link to="/exam/list">试卷列表</Link>
+            <Link to="/exam/list">{props.intl.formatMessage({id: 'router.questions.examlist'})}</Link>
         </Menu.Item>
     </SubMenu>
     <SubMenu
@@ -66,18 +69,18 @@ function MenuComp(props){
         title={
         <span>
             <Icon type="project" />
-            班级管理
+            {props.intl.formatMessage({id: 'router.questions.classMan'})}
         </span>
         }
     >
         <Menu.Item key="8">
-            <Link to="/class/classMetting">班级管理</Link>
+            <Link to="/class/classMetting">{props.intl.formatMessage({id: 'router.questions.classMan'})}</Link>
         </Menu.Item>
         <Menu.Item key="9">
-            <Link to="/class/classRoom">教室管理</Link>
+            <Link to="/class/classRoom">{props.intl.formatMessage({id: 'router.questions.roomMan'})}</Link>
         </Menu.Item>
         <Menu.Item key="10">
-            <Link to="/class/student">学生管理</Link>
+            <Link to="/class/student">{props.intl.formatMessage({id: 'router.questions.studentMan'})}</Link>
         </Menu.Item>
     </SubMenu>
     <SubMenu
@@ -85,16 +88,16 @@ function MenuComp(props){
         title={
         <span>
             <Icon type="project" />
-            阅卷管理
+            {props.intl.formatMessage({id: 'router.questions.gradeMan'})}
         </span>
         }
     >
         <Menu.Item key="11">
-            <Link to="/examination/waitClass">待批班级</Link>
+            <Link to="/examination/waitClass">{props.intl.formatMessage({id: 'router.questions.classWait'})}</Link>
         </Menu.Item>
     </SubMenu>
 
   </Menu>
 }
 
-export default MenuComp;
+export default injectIntl(MenuComp);

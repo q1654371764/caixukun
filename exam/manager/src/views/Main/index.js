@@ -3,6 +3,7 @@ import styles from './index.css';
 import { Route, Switch } from 'dva/router';
 import Menu from '../../components/Menu'
 import { Layout } from 'antd';
+import {connect} from 'dva';
 import Add from '../Question/add/add.js'
 import Type from '../Question/type/type'
 import View from '../Question/view/view'
@@ -13,6 +14,8 @@ import UserShow from '../User/userShow/usershow'
 import ClassManager from '../RoomManager/RoomMan/roomMan'
 import AddUser from '../User/AddUser/Adduser'
 import StudentMan from '../RoomManager/StudentMan/SutdentMan'
+import ClassWait from '../GradeMan/classWait/classWait'
+import ClassDetail from '../GradeMan/classDetail/classDetail'
 
 const { Content, Sider } = Layout;
 function IndexPage(props) {
@@ -27,7 +30,8 @@ function IndexPage(props) {
             </span>
             <span className={styles.txt}>
               asfdgsads
-              </span>
+            </span>
+            <button onClick={()=>props.changeLocal(props.locale==='zh'?'en':'zh')}>{props.locale==='zh'?'中文':'Eng'}</button>
           </div>
         </div>
     <Layout>
@@ -46,6 +50,8 @@ function IndexPage(props) {
           <Route path="/class/classRoom" component={ClassManager}></Route>
           <Route path="/user/add" component={AddUser}></Route>
           <Route path="/class/student" component={StudentMan}></Route>
+          <Route path="/examination/waitClass" component={ClassWait}></Route>
+          <Route path="/examination/ClassDetail" component={ClassDetail}></Route>
           
         </Switch>
       </Content>
@@ -53,7 +59,23 @@ function IndexPage(props) {
   </Layout>
 }
 
-IndexPage.propTypes = {
-};
 
-export default IndexPage
+const mapStateToProps = state=>{
+  console.log('state..', state);
+  return {
+    locale: state.global.locale
+  }
+}
+
+const mapDispatchToProps = dispatch=>{
+  return {
+    changeLocal: payload=>{
+      dispatch({
+        type: 'global/changeLocale',
+        payload
+      })
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(IndexPage);
