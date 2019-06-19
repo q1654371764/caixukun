@@ -44,7 +44,7 @@ function QuesList(props) {
                         props.user.data2 && props.user.data2.map((item,index)=><Option value={item.subject_id} key={index}>{item.subject_text}</Option>)
                     }
                 </Select>
-                <Button type="primary"><Icon type="search"/>查询</Button>
+                <Button type="primary" className={styles.left}><Icon type="search"/>查询</Button>
             </div>
         </div>
         <div className={styles.bot}>

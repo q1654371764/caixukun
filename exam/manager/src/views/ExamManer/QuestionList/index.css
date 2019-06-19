@@ -70,9 +70,10 @@
 }
 .every{
     width: 95%;
-    height: 100px;
+    height: 80px;
     margin-left: 2.5%;
-    line-height: 100px;
+    line-height: 80px;
+    border-bottom: 1px solid #e6e6e6;
 }
 .every ul{
     display: flex;
@@ -83,5 +84,11 @@
 }
 .every ul li{
     flex: 1;
+    margin-left: 20px;
+}
+.every ul li:last-child{
+    color: blue;
+}
+.left{
     margin-left: 20px;
 }

@@ -1,4 +1,4 @@
-import {allQuestion,ExamDetail,userAll1,userAll2,userAll3,userAll4,userAll5,userAll6,WaitClass,Classmate} from '../services'
+import {allQuestion,ExamDetail,userAll1,userAll2,userAll3,userAll4,userAll5,userAll6,WaitClass,Classmate,AddExam} from '../services'
 
 export default {
     // 命名空间
@@ -70,7 +70,15 @@ export default {
           })
           // console.log(exam.exam)
         },
-    
+        *AddExam({ payload }, { call, put }) {
+          console.log(payload)
+          let data = yield call(AddExam, payload);
+          console.log(data)
+          yield put({
+            type: "AddEx",
+            payload: data,
+          })
+        },
     
     },
     // 同步操作
@@ -92,7 +100,9 @@ export default {
         // console.log(payload.code)
         return { ...state, data8: payload };
       },
-  
+      AddEx(state, { payload }) {
+        return { ...state, addExamList: payload };
+      }
     },
   
   };

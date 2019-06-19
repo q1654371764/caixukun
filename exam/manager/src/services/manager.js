@@ -53,4 +53,11 @@ export function WaitClass(){
       method:"GET"
     })
   }
-  
+  export function AddExam(payload){
+      console.log(payload)
+    return request({
+      url:'/exam/exam',
+      data:payload
+    })
+  }
+ 
