@@ -9,6 +9,8 @@ import RigthBar from '../../Question/view/view.js'
 function AddDetail(props) {
     let [title,titltRight] = useState('');
     let [tit,titRight] = useState([]);
+    let [gen,genRight] = useState('');
+    let [examId,examRight] = useState('')
   useState(()=>{
    
   },[])
@@ -23,6 +25,9 @@ function AddDetail(props) {
         if(props.manager.addExamList){
             console.log(tit)
             console.log(JSON.parse(props.manager.addExamList.exam[2].question_ids))
+            console.log(props.manager.addExamList.exam[2].exam_exam_id)
+            examRight(props.manager.addExamList.exam[2].exam_exam_id)
+            genRight(JSON.parse(props.manager.addExamList.exam[2].question_ids))
             if(props.manager.addExamList.exam[2]){
                 JSON.parse(props.manager.addExamList.exam[2].question_ids).filter((item,index)=>{
                     tit.push(props.user.data6.find((citem,cindex)=>item === citem.questions_id))
@@ -65,7 +70,15 @@ function AddDetail(props) {
                 }
             </div>
             <div className={styles.an}>
-                <Button type='primary' className={styles.btn}>创建试卷</Button>
+                <Button type='primary' className={styles.btn} onClick={()=>{
+                  let {genXin} = props;
+                  genXin({
+                    question_ids:JSON.stringify(gen),
+                    examid:examId
+                  })
+                   
+                  props.history.push('/exam/list')
+                }}>创建试卷</Button>
             </div>
             <Drawer
                 placement="right"
@@ -98,7 +111,12 @@ const mapStateToProps = state=>{
 
 const mapDisaptchToProps = dispatch=>{
   return {
-    
+    genXin(payload){
+      dispatch({
+        type: 'manager/genXin',
+        payload
+      })
+    }
   }
 }
 

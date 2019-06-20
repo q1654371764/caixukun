@@ -60,4 +60,74 @@ export function WaitClass(){
       data:payload
     })
   }
+  export function getgtade(){
+    return request({
+        url:"/manger/grade",
+        method:"GET",
+    })
+}
+
+export function getsubject(){
+    return request({
+        url:"/exam/subject",
+        method:"GET",
+    }) 
+}
+
+export function getroom(){
+    return request({
+        url:"/manger/room",
+        method:"GET",
+    }) 
+}
+
+export function delrooms(payload){
+    return request({
+        url:"/manger/room/delete",
+        method:"DELETE",
+        data:payload
+    })
+}
+
+export function addGtade(payload){
+    return request({
+        url:"/manger/grade",
+        method:"POST",
+        data:payload,
+    })
+}
+
+export function delClass(payload){
+  return request({
+      url:"/manger/grade/delete",
+      method:"DELETE",
+      data:payload,
+  })
+}
+
+export function addRoom(payload){
+    return request({
+        url:"/manger/room",
+        method:"POST",
+        data:payload,
+    })
+}
+
+export function gradUpdata(payload){
+    return request({
+        url:"/manger/grade/update",
+        method:"PUT",
+        data:payload,
+    })
+}
+export function genxin(payload){
+  return request({
+      url:"/exam/exam/" + payload.examid,
+      method:"PUT",
+      data:{
+        question_ids:payload.question_ids
+      }
+  })
+}
+
  

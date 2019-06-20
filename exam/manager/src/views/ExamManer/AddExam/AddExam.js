@@ -6,6 +6,7 @@ import { Input,Select,Button,InputNumber,DatePicker } from 'antd';
 const { Option } = Select;
   
 function AddExam(props) {
+    let [sta,staRight] = useState(false)
     let [start,startValueRight] = useState(null)
     let [end,endRight] = useState(null)
     let [open,openRight] = React.useState({
@@ -71,9 +72,10 @@ function AddExam(props) {
                 exam_id:exam.Value,
                 title:inp,
                 number:num.Value,
-                start_time:start._d * 1,
+                start_time:start._d * 1, 
                 end_time:end._d * 1
             })
+            staRight(true)
         }
     }
   useState(()=>{
@@ -81,18 +83,21 @@ function AddExam(props) {
   },[])
   useEffect(()=>{
     let {examType,allTit} = props;
-      allTit()
+    staRight(false)
+    allTit()
     examType()
     console.log(props)
   }, []);
   useEffect(()=>{
       console.log(props.manager)
-    if(props.manager) {
-        if(props.manager.addExamList){
-            props.history.push('/exam/addDetail?title='+inp)
+      
+      if(props.manager) {
+        console.log(props)
+        if(props.manager.addExamList && sta){
+            if(props.manager.addExamList.msg == '试卷列表获取成功'){
+                props.history.push('/exam/addDetail?title='+inp)
+            }
         }
-       
-        
     }
     
     console.log(props.manager)

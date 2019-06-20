@@ -1,4 +1,4 @@
-import {allQuestion,ExamDetail,userAll1,userAll2,userAll3,userAll4,userAll5,userAll6,WaitClass,Classmate,AddExam} from '../services'
+import {allQuestion,ExamDetail,userAll1,userAll2,userAll3,userAll4,userAll5,userAll6,genxin,WaitClass,Classmate,AddExam,addGtade,getgtade,getsubject,getroom,delClass,gradUpdata} from '../services'
 
 export default {
     // 命名空间
@@ -79,6 +79,36 @@ export default {
             payload: data,
           })
         },
+        *gtade({payload},{call,put}){
+          let dataGtade= yield call(getgtade);
+          let dataSubject= yield call(getsubject);
+          let dataRoom= yield call(getroom);
+          
+          yield put({type:"getGtade",payload:dataGtade})
+          yield put({type:"getSubject",payload:dataSubject})
+          yield put({type:"getRoom",payload:dataRoom})
+      },
+        *addrade({payload},{call,put}){
+            let data=yield call(addGtade,payload)
+            yield put({type:"addRande",payload:data})
+        },
+        *delClass({payload},{call,put}){
+          let data=yield call(delClass,payload);
+          yield put({type:"deleClass",payload:data})
+        },
+      *gradUpdata({payload},{call,put}){
+          let data=yield call(gradUpdata,payload);
+          console.log(data);//更新
+        },
+        *genXin({ payload }, { call, put }) {
+          console.log(payload)
+          let data = yield call(genxin, payload);
+          console.log(data)
+          // yield put({
+          //   type: "AddEx",
+          //   payload: data,
+          // })
+        },
     
     },
     // 同步操作
@@ -102,6 +132,24 @@ export default {
       },
       AddEx(state, { payload }) {
         return { ...state, addExamList: payload };
+      },
+      getGtade(state, {payload}) {
+        return { ...state, classData:payload.code===1?payload.data:[]};
+      },
+      getSubject(state, {payload}) {
+        return { ...state, subjectData:payload.code===1?payload.data:[]};
+      },
+      getRoom(state, {payload}) {
+        return { ...state, roomData:payload.code===1?payload.data:[]};
+      },
+      addRande(state,{payload}){
+          return {...state,grader:payload.code===1?true:false};
+      },
+      deleClass(state,{payload}){
+        return {...state,isDele:payload.code===1?true:false};
+      },
+      deleRoom(state,{payload}){
+        return {...state}
       }
     },
   
