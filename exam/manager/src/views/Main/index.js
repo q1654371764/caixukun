@@ -1,27 +1,30 @@
 import React from 'react';
 import styles from './index.css';
-import { Route, Switch } from 'dva/router';
+import { Route, Switch,Redirect } from 'dva/router';
 import Menu from '../../components/Menu'
 import { Layout } from 'antd';
 import {connect} from 'dva';
-import Add from '../Question/add/add.js'
-import Type from '../Question/type/type'
-import View from '../Question/view/view'
-import Detail from '../Question/detail/index'
-import List from '../ExamManer/QuestionList/index'
-import ExamDetail from '../ExamManer/ExamDetail/examdetail'
-import UserShow from '../User/userShow/usershow'
-import ClassManager from '../RoomManager/RoomMan/roomMan'
-import AddUser from '../User/AddUser/Adduser'
-import StudentMan from '../RoomManager/StudentMan/SutdentMan'
-import ClassWait from '../GradeMan/classWait/classWait'
-import ClassDetail from '../GradeMan/classDetail/classDetail'
-import AddExam from '../ExamManer/AddExam/AddExam'
-import AddDetail from '../ExamManer/AddDetail/AddDetail'
-import ClassMan from '../RoomManager/classMan/classMan'
+// import Add from '../Question/add/add.js'
+// import Type from '../Question/type/type'
+// import View from '../Question/view/view'
+// import Detail from '../Question/detail/index'
+// import List from '../ExamManer/QuestionList/index'
+// import ExamDetail from '../ExamManer/ExamDetail/examdetail'
+// import UserShow from '../User/userShow/usershow'
+// import ClassManager from '../RoomManager/RoomMan/roomMan'
+// import AddUser from '../User/AddUser/Adduser'
+// import StudentMan from '../RoomManager/StudentMan/SutdentMan'
+// import ClassWait from '../GradeMan/classWait/classWait'
+// import ClassDetail from '../GradeMan/classDetail/classDetail'
+// import AddExam from '../ExamManer/AddExam/AddExam'
+// import AddDetail from '../ExamManer/AddDetail/AddDetail'
+// import ClassMan from '../RoomManager/classMan/classMan'
 
 const { Content, Sider } = Layout;
 function IndexPage(props) {
+  if (!props.myView.length){
+    return null;
+  }
   return <Layout className={styles.container}>
       <div className={styles.header}>
           <div className={styles.header_left}>
@@ -43,7 +46,7 @@ function IndexPage(props) {
       </Sider>
       <Content>
         <Switch>
-          <Route path="/questions/add" component={Add}></Route>
+          {/* <Route path="/questions/add" component={Add}></Route>
           <Route path="/questions/type" component={Type}></Route>
           <Route path="/questions/view" component={View}></Route>
           <Route path="/questions/detail" component={Detail}></Route>
@@ -57,8 +60,24 @@ function IndexPage(props) {
           <Route path="/examination/ClassDetail" component={ClassDetail}></Route>
           <Route path="/exam/add" component={AddExam}></Route>
           <Route path="/exam/addDetail" component={AddDetail}></Route>
-          <Route path="/class/classMetting" component={ClassMan}></Route>
-          
+          <Route path="/class/classMetting" component={ClassMan}></Route> */}
+          <Redirect exact from="/" to="/questions/add"/>
+          {/* 渲染该用户拥有的路由 */}
+          {
+            props.myView.map((item)=>{
+              if (item.children){
+                return item.children.map((value,key)=>{
+                  return  <Route key={key} path={value.path} component={value.component}/>
+                })
+              }
+            })
+          }
+          {/* 403路由 */}
+          {props.forbiddenView.map((item)=>{
+            return <Redirect key={item} from={item} to="/403"/>
+          })}
+          {/* 剩余路由去404 */}
+          <Redirect to="/404"/>
         </Switch>
       </Content>
     </Layout>
@@ -69,7 +88,9 @@ function IndexPage(props) {
 const mapStateToProps = state=>{
   console.log('state..', state);
   return {
-    locale: state.global.locale
+    locale: state.global.locale,
+    myView: state.user.myView,
+    forbiddenView: state.user.forbiddenView
   }
 }
 

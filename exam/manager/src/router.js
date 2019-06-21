@@ -3,6 +3,8 @@ import { Router, Route, Switch} from 'dva/router';
 import IndexDetail from './views/Main/index'
 import Login from './views/Login/login';
 import {connect} from 'dva';
+import AccessForbiddenPage from './views/Main/Other/403';
+import NotFoundPage from './views/Main/Other/404';
 
 // 引入国际化
 import {IntlProvider, addLocaleData} from 'react-intl';
@@ -29,6 +31,8 @@ const RouterView = connect(mapStateToProps)(({locale,history})=>{
     <Router history={history}>
      <Switch>
         <Route path="/login" component={Login} />
+        <Route path="/403" component={AccessForbiddenPage} />
+        <Route path="/404" component={NotFoundPage} />
         <Route path="/" component={IndexDetail} />
       </Switch>
     </Router>

@@ -65,7 +65,7 @@ function AddExam(props) {
         console.log(e.target.value)
     }
     function addExam(){
-        if(inp && exam.Value && classD.Value && num.Value && start._d * 1 && end._d * 1){
+        if(inp && exam.Value && classD.Value && num.Value && start && end){
             let {Addexam} = props;
             Addexam({
                 subject_id:classD.Value,
