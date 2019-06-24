@@ -72,3 +72,12 @@ export function getViewAuthority(user_id){
     url: '/user/new?user_id='+user_id
   })
 }
+
+
+export function appendImg(payload){
+  return request({
+    url: 'http://123.206.55.50:11000/upload',
+    method: 'POST',
+    data: payload
+  })
+}

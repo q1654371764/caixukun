@@ -13,6 +13,7 @@ export default {
     'router.questions.roomMan': 'RoomManage',
     'router.questions.studentMan': 'StudentManage',
     'router.questions.gradeMan': 'MarkManage',
-    'router.questions.classWait': 'AwaitClass'
+    'router.questions.classWait': 'AwaitClass',
+    'router.questions.uponload': 'Uponload'
   }
   

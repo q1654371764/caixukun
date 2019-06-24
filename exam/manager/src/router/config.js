@@ -14,6 +14,7 @@ import ClassDetail from '../views/GradeMan/classDetail/classDetail'
 // import AddExam from '../ExamManer/AddExam/AddExam'
 import AddDetail from '../views/ExamManer/AddDetail/AddDetail'
 // import ClassMan from '../RoomManager/classMan/classMan'
+import uponload from '../views/GradeMan/uponload/uponload'
 
 // 引入路由
 const Add =  dynamic({
@@ -145,8 +146,13 @@ export default {
       name: null,
       id: 'main-examPaperClassmate',
       path: '/examination/ClassDetail',
-      component: ClassDetail
-    }]
+      component: ClassDetail   
+    },{
+      name: 'router.questions.uponload',
+      id: 'main-examPaperClassList',
+      path: '/examination/uponload',
+      component: uponload
+    },]
   }
 ]
 }

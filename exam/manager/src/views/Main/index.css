@@ -32,6 +32,7 @@ body,html{
   box-shadow: 1px 1px 3px #888888;
   padding-top: 40px;
   padding-bottom: 40px;
+  position: relative;
 }
 .header_left{
   width: 150px;
@@ -85,4 +86,8 @@ margin-left: 10px;
   background: rgba(255, 255, 255, 0.2);
   margin: 16px 28px 16px 0;
   float: left;
+}
+.selecT{
+  position: absolute;
+  left: 200px;
 }

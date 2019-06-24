@@ -1,4 +1,4 @@
-import {login,quesType,examType,examSubject,getQusetion,userFormation,addTitle,allTitle,searChget,addType,getUserInfo, getViewAuthority} from '../services'
+import {login,quesType,examType,examSubject,getQusetion,userFormation,addTitle,allTitle,searChget,addType,getUserInfo, getViewAuthority,appendImg} from '../services'
 import {getToken,setToken} from '../utils/user'
 import { routerRedux } from 'dva/router';
 
@@ -145,7 +145,14 @@ export default {
         //   type:"getExamAll",
         //   payload:data
         // })
-      }
+      },
+      *appendImg({payload},{call,put}){
+        console.log(payload)
+        let data = yield call(appendImg,payload)
+        console.log(data)
+        yield put({type:'appen',action:data.data})
+      },
+    
     },
     // 同步操作
     reducers: {
@@ -195,7 +202,10 @@ export default {
       },
       getExamAll(state, {payload}) {
         return { ...state, data6:payload.code===1?payload.data:[]};
-      }
+      },
+      appen(state,{action}){
+        return {...state,upload:action}
+      },
     },
   
   };
