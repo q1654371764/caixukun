@@ -1,0 +1,45 @@
+.content{
+    width: 100%;
+}
+.content>span{
+    font-size: 22px;
+    display: inline-block;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+.con{
+    width: 95%;
+    background: #fff;
+    border-radius: 5px;
+    margin-left: 2.5%;
+    margin-top: 25px;
+}
+.inp{
+    width: 350px;
+    height: 35px;
+    margin-top: 10px;
+}
+.eve{
+    margin-top: 40px;
+    margin-left: 20px;
+    display: inline-block;
+}
+.red{
+    color: red;
+}
+.mar{
+    margin-top: 10px;
+}
+.btn{
+    width: 145px;
+    height: 35px;
+    line-height: 35px;
+    margin-top: 20px;
+    margin-left: 20px;
+    background: rgb(4, 59, 253);
+    margin-bottom: 40px;
+}
+.time{
+    margin-top: 10px;
+    margin-left: 5px;
+}

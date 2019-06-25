@@ -1,0 +1,81 @@
+.content{
+    width: 100%;
+}
+.content>span{
+    font-size: 22px;
+    margin-left: 20px;
+    display: inline-block;
+    margin-top: 40px;
+}
+.con{
+    width: 95%;
+    background: white;
+    margin-left: 2.5%;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+.add{
+    background: white;
+    border: 1px solid #e6e6e6;
+    margin-top: 20px;
+    margin-left: 20px;
+    font-size: 15px;
+    padding:5px 5px;
+}
+.top{
+    width: 100%;
+    height: 60px;
+    text-align: center;
+}
+.top>span:nth-child(1){
+    font-size: 20px;
+
+}
+.question{
+    width: 100%;
+    
+}
+.every{
+    border: 1px solid #e6e6e6;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 20px;
+    position: relative;
+}
+.every span:nth-child(1){
+    display: inline-block;
+    font-size: 18px;
+    margin-top: 10px;
+}
+.every span{
+    display: inline-block;
+    padding-left: 20px;
+    font-size: 15px;
+    margin-top: 10px;
+}
+.an{
+    width: 100%;
+    margin: 0 auto;
+    margin-left: 45%;
+    margin-top: 40px;
+    padding-bottom: 40px;
+}
+.btn{
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    background: blue;
+    color: white;
+}
+.del{
+    position: absolute;
+    right: 5px;
+    top:5px;
+    color: blue;
+}
+
+:gloabl{
+    .Bar{
+        width: 1000px;
+    }
+}
