@@ -1,4 +1,4 @@
-import {login,quesType,examType,examSubject,getQusetion,userFormation,addTitle,allTitle,searChget,addType,getUserInfo, getViewAuthority,appendImg} from '../services'
+import {changeImgs,base64s,login,quesType,examType,examSubject,getQusetion,userFormation,addTitle,allTitle,searChget,addType,getUserInfo, getViewAuthority,appendImg} from '../services'
 import {getToken,setToken} from '../utils/user'
 import { routerRedux } from 'dva/router';
 
@@ -152,7 +152,17 @@ export default {
         console.log(data)
         yield put({type:'appen',action:data.data})
       },
-    
+      *changeImg({payload},{call,put}){
+        let data=yield call(changeImgs,payload);
+        yield put({type:"changImg",payload:data});
+       },
+       //
+       *base64({payload},{call,put}){
+         let data=yield call(base64s);
+         yield put({type:"base64ss",payload:data.data.base64})
+         yield put({type:"setbase64ss"})
+       }
+     
     },
     // 同步操作
     reducers: {
@@ -206,6 +216,16 @@ export default {
       appen(state,{action}){
         return {...state,upload:action}
       },
+      changImg(state,{payload}){
+        return {...state,imgSrc:payload.data};
+      },
+      base64ss(state,{payload}){
+        return {...state,srcImg:payload};
+      },
+      setbase64ss(state,{payload}){
+        return {...state,srcImg:0};
+      }
+
     },
   
   };

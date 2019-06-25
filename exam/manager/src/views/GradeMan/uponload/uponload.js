@@ -1,41 +1,72 @@
-import { connect } from 'dva'
-import React ,{useEffect,useState} from 'react';
-
-function IndexPage(props){
-    let [imgs,setimg] = useState('')
-    useEffect(function(){
-        console.log(props.upload)
-        props.upload && setimg(props.upload[0].path)
-        console.log(imgs)
-    },[props.upload])
-    return <div>
-        <input type='file' onChange={(e)=>{
-                let files = e.target.files;
-                // 创建一个formData
-                let form = new FormData();
-                for (let i=0,len=files.length; i<len;i++){
-                    form.append(files[i].name, files[i]);
-                    console.log(form)
-                    props.append(form)
-                }
-        }} />
-        <img src={imgs}/>
-    </div>
-    
-}
-function mapStateToprops(state){
-    return {
-        ...state.user
-    }
-}
-function mapDispatchToprosp(dispatch){
-    return {
-        append(payload){
-            dispatch({
-                type:'user/appendImg',
-                payload
-            })
+import React,{useEffect,useState} from 'react'
+import { connect} from 'dva';
+function Index(props){ 
+    let {imgSrc,srcImg}=props;
+    let [imgs,setimgs]=useState("");
+    let [canvas,setCanvas]=useState("");
+    let [newImg,setnewImg]=useState("");
+    let [newTopImg,setnewTopImg]=useState("");
+    let [change,setChange]=useState("");
+    useEffect(()=>{
+        if(!srcImg){
+            props.base64();
         }
-    }
+    },[imgSrc,srcImg])
+  return <div>
+      <input type="file" onChange={(e)=>{
+        setChange(e.target.files);
+      }}/>
+      {imgs && <img style={{width:"100px",height:"100px",display:"none"}} ref={ref=>setnewTopImg(ref)}  src={imgs}></img>}
+      <button disabled={imgSrc?false:true} onClick={()=>{
+           setimgs(canvas.toDataURL())
+      }}>更换头像</button>
+
+     <canvas ref={ref=>{
+         setCanvas(ref);
+         changeCan();
+     }} width="400" height="200">
+     您的浏览器不支持canvas，请更换浏览器.
+     </canvas>
+     <img style={{width:"200px",height:"200px",display:"none"}} ref={ref=>setnewImg(ref)}  src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1562050630&di=89f94270963dbfa38de1d0eea22bb5f0&imgtype=jpg&er=1&src=http%3A%2F%2Fpic.baike.soso.com%2Fp%2F20140103%2F20140103212227-1956389668.jpg"/>
+  </div>
+  function changeCan(){
+    let cxt = canvas && canvas.getContext('2d');
+    if(srcImg){
+        newImg.src = srcImg;
+      cxt.drawImage(newImg,0,0,1200,633,0,0,250,158);
+     if(change){
+        let files = change;
+        var reader = new FileReader();
+        reader.onload = function(){
+            setimgs(this.result);
+            if(newTopImg){
+             cxt.drawImage(newTopImg,0,0,533,299,150,25,104,77);
+             if(!imgSrc){
+                props.changeImg({base64:canvas.toDataURL()})
+             }
+            }
+        }
+        reader.readAsDataURL(files[0]);
+     }
+  }
 }
-export default connect(mapStateToprops,mapDispatchToprosp)(IndexPage)
+ }
+let mapStateToProps=state=>{
+  return {...state.user}
+}
+let mapDispatchProps=dispatch=>{
+ return {
+     changeImg(payload){
+         dispatch({
+             type:"user/changeImg",
+             payload,
+         })
+     },
+     base64(){
+         dispatch({
+             type:"user/base64"
+         })
+     }
+ }
+}
+export default connect(mapStateToProps,mapDispatchProps)(Index);

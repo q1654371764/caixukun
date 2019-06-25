@@ -4,6 +4,7 @@ import { Route, Switch,Redirect } from 'dva/router';
 import Menus from '../../components/Menu'
 import { Layout, Dropdown, Menu ,Modal} from 'antd';
 import {connect} from 'dva';
+import Cookie from 'js-cookie'
 // import Add from '../Question/add/add.js'
 // import Type from '../Question/type/type'
 // import View from '../Question/view/view'
@@ -23,6 +24,12 @@ import {removeToken} from '../../utils/user'
 const { Content, Sider } = Layout;
 const confirm = Modal.confirm;
 function IndexPage(props) {
+  let [img,imgS] = useState('');
+  let [be,beS] = useState(Cookie.get('img'));
+  useEffect(function(){
+    console.log('top',props)
+    imgS(props.img)
+  },[props.img])
   
   if (!props.myView.length){
     return null;
@@ -67,7 +74,7 @@ const menu = (
          
           <div className={styles.header_right}>
           <Dropdown overlay={menu}>
-                    <span style={{ height: '100%', width: "150px", display: 'flex', alignItems: 'center', justifyContent: 'center' }}><img src="https://cdn.nlark.com/yuque/0/2019/png/anonymous/1547609339813-e4e49227-157c-452d-be7e-408ca8654ffe.png?x-oss-process=image/resize,m_fill,w_48,h_48/format,png" style={{ width: '40px', height: '40px', verticalAlign: 'middel', borderRadius: '50%', margin: '0 10px' }} alt="" />chenmanjie</span>
+                    <span style={{ height: '100%', width: "150px", display: 'flex', alignItems: 'center', justifyContent: 'center' }}><img src={img ? img : be} style={{ width: '40px', height: '40px', verticalAlign: 'middel', borderRadius: '50%', margin: '0 10px' }} alt="" />chenmanjie</span>
             </Dropdown>
             {/* <button className={styles.btt} onClick={()=>props.changeLocal(props.locale==='zh'?'en':'zh')}>{props.locale==='zh'?'中文':'Eng'}</button> */}
           </div>
@@ -123,7 +130,9 @@ const mapStateToProps = state=>{
   return {
     locale: state.global.locale,
     myView: state.user.myView,
-    forbiddenView: state.user.forbiddenView
+    forbiddenView: state.user.forbiddenView,
+    img:state.user.imgSrc ? state.user.imgSrc.path : Cookie.get('img')
+    // img:state.user.upload[0].path
   }
 }
 

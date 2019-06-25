@@ -81,3 +81,18 @@ export function appendImg(payload){
     data: payload
   })
 }
+export function changeImgs(payload){
+  return request({
+        method: 'POST',
+        url: 'http://123.206.55.50:11000/upload_base64',
+        data: payload
+  })
+}
+
+export function base64s(){
+  return request({
+    method:"POST",
+    url: 'http://123.206.55.50:11000/tobase64',
+    data: {url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1562050630&di=89f94270963dbfa38de1d0eea22bb5f0&imgtype=jpg&er=1&src=http%3A%2F%2Fpic.baike.soso.com%2Fp%2F20140103%2F20140103212227-1956389668.jpg'}
+  })
+}
