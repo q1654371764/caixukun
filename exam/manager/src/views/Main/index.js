@@ -40,9 +40,7 @@ function IndexPage(props) {
               console.log('Cancel');
             },
         });
-        
     }
-    
 };
 
 const menu = (
@@ -69,7 +67,20 @@ const menu = (
 
           <div className={styles.header_right}>
           <Dropdown overlay={menu}>
-                    <span style={{ height: '100%', width: "150px", display: 'flex', alignItems: 'center', justifyContent: 'center' }}><img src="https://cdn.nlark.com/yuque/0/2019/png/anonymous/1547609339813-e4e49227-157c-452d-be7e-408ca8654ffe.png?x-oss-process=image/resize,m_fill,w_48,h_48/format,png" style={{ width: '40px', height: '40px', verticalAlign: 'middel', borderRadius: '50%', margin: '0 10px' }} alt="" />皮卡丘</span>
+                    <span style={{ 
+                      height: '100%', 
+                      width: "150px", 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      justifyContent: 'center' 
+                      }}>
+                        <img src="https://cdn.nlark.com/yuque/0/2019/png/anonymous/1547609339813-e4e49227-157c-452d-be7e-408ca8654ffe.png?x-oss-process=image/resize,m_fill,w_48,h_48/format,png" 
+                        style={{ width: '40px', 
+                        height: '40px', 
+                        verticalAlign: 'middel', 
+                        borderRadius: '50%', 
+                        margin: '0 10px' }} 
+                        alt="" />chenmanjie</span>
             </Dropdown>
           </div>
         </div>
