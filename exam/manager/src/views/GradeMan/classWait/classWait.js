@@ -50,7 +50,8 @@ function WaitClass(props) {
           )
         }
       </div>
-      <Pagination size="small" total={50} showSizeChanger showQuickJumper />
+      {/* props.data7 && props.data7.length */}
+      <Pagination defaultCurrent={6} total={10} />
     </div>
   )
 }

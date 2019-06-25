@@ -13,6 +13,7 @@ export default {
     'router.questions.roomMan': '教室管理',
     'router.questions.studentMan': '学生管理',
     'router.questions.gradeMan': '阅卷管理',
-    'router.questions.classWait': '待批班级'
+    'router.questions.classWait': '待批班级',
+    'router.questions.uponload': '上传图片'
   }
   

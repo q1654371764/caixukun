@@ -1,9 +1,10 @@
-import React from 'react';
 import styles from './index.css';
+import React, { useState, useEffect } from 'react';
 import { Route, Switch,Redirect } from 'dva/router';
-import Menus from '../../components/Menus'
+import Menus from '../../components/Menu'
 import { Layout, Dropdown, Menu ,Modal} from 'antd';
 import {connect} from 'dva';
+import Cookie from 'js-cookie'
 // import Add from '../Question/add/add.js'
 // import Type from '../Question/type/type'
 // import View from '../Question/view/view'
@@ -22,8 +23,14 @@ import {connect} from 'dva';
 import {removeToken} from '../../utils/user'
 const { Content, Sider } = Layout;
 const confirm = Modal.confirm;
-
 function IndexPage(props) {
+  let [img,imgS] = useState('');
+  let [be,beS] = useState(Cookie.get('img'));
+  useEffect(function(){
+    console.log('top',props)
+    imgS(props.img)
+  },[props.img])
+  
   if (!props.myView.length){
     return null;
   }
@@ -40,9 +47,10 @@ function IndexPage(props) {
               console.log('Cancel');
             },
         });
+        
     }
+    
 };
-
 const menu = (
     <Menu onClick={onClick}>
         <Menu.Item key="1">个人中心</Menu.Item>
@@ -57,31 +65,18 @@ const menu = (
           <div className={styles.header_left}>
             <img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1551624718911&amp;di=4a7004f8d71bd8da84d4eadf1b59e689&amp;imgtype=0&amp;src=http%3A%2F%2Fimg105.job1001.com%2Fupload%2Falbum%2F2014-10-15%2F1413365052_95IE3msH.jpg" alt="" />
           </div>
-
           <select name="请选择语言" id="" onChange={(e)=>{
               props.changeLocal(e.target.value)
             }} className={styles.selecT}>
               <option value="en">English</option>
               <option value="zh">中文</option>
             </select>
-
+         
           <div className={styles.header_right}>
           <Dropdown overlay={menu}>
-                    <span style={{ 
-                      height: '100%', 
-                      width: "150px", 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      justifyContent: 'center' 
-                      }}>
-                        <img src="https://cdn.nlark.com/yuque/0/2019/png/anonymous/1547609339813-e4e49227-157c-452d-be7e-408ca8654ffe.png?x-oss-process=image/resize,m_fill,w_48,h_48/format,png" 
-                        style={{ width: '40px', 
-                        height: '40px', 
-                        verticalAlign: 'middel', 
-                        borderRadius: '50%', 
-                        margin: '0 10px' }} 
-                        alt="" />chenmanjie</span>
+                    <span style={{ height: '100%', width: "150px", display: 'flex', alignItems: 'center', justifyContent: 'center' }}><img src={img ? img : be} style={{ width: '40px', height: '40px', verticalAlign: 'middel', borderRadius: '50%', margin: '0 10px' }} alt="" />chenmanjie</span>
             </Dropdown>
+            {/* <button className={styles.btt} onClick={()=>props.changeLocal(props.locale==='zh'?'en':'zh')}>{props.locale==='zh'?'中文':'Eng'}</button> */}
           </div>
         </div>
     <Layout>
@@ -89,7 +84,7 @@ const menu = (
         <Menus/>
       </Sider>
       <Content>
-      <Switch>
+        <Switch>
           {/* <Route path="/questions/add" component={Add}></Route>
           <Route path="/questions/type" component={Type}></Route>
           <Route path="/questions/view" component={View}></Route>
@@ -126,6 +121,7 @@ const menu = (
       </Content>
     </Layout>
   </Layout>
+
 }
 
 
@@ -134,7 +130,9 @@ const mapStateToProps = state=>{
   return {
     locale: state.global.locale,
     myView: state.user.myView,
-    forbiddenView: state.user.forbiddenView
+    forbiddenView: state.user.forbiddenView,
+    img:state.user.imgSrc ? state.user.imgSrc.path : Cookie.get('img')
+    // img:state.user.upload[0].path
   }
 }
 

@@ -11,11 +11,28 @@ function QuesList(props) {
     let [size,newSize] = React.useState({
         data:'全部'
     })
-
+    let [data,dataRigth] = useState('')
     function onChange(e){
       newSize({
         data:e.target.value
       })
+      if(e.target.value == '全部'){
+        console.log(new Date() * 1)
+        dataRigth(props.manager.data.exam)
+      }else if(e.target.value == '未开始'){
+        dataRigth(props.manager.data.exam.filter((item,index)=>{
+          return item.start_time * 1 > new Date() * 1
+        }))
+      }else if(e.target.value == '已结束'){
+        dataRigth(props.manager.data.exam.filter((item,index)=>{
+          return item.end_time * 1 < new Date() * 1
+        }))
+      }else{
+        //进行中
+        dataRigth(props.manager.data.exam.filter((item,index)=>{
+          return !(item.start_time * 1 > new Date() * 1) && !(item.end_time * 1 < new Date() * 1)
+        }))
+      }
     };
 
   useState(()=>{
@@ -24,10 +41,19 @@ function QuesList(props) {
   useEffect(()=>{
     let {examType,allQue} = props;
     examType()
-    allQue()
+    if(props.manager.data){
+      if(props.manager.data){
+        console.log(1111111111,props)
+        dataRigth(props.manager.data.exam)
+      }
+    }else{
+      allQue()
+    }
+    
     console.log(props)
+    
 
-  }, []);
+  }, [props.manager]);
     return (<div className={styles.content}>
         <span>试卷列表</span><br/>
         <div className={styles.top}>
@@ -52,6 +78,7 @@ function QuesList(props) {
                 <span>试卷列表</span>
                 <Radio.Group value={size.data} onChange={onChange} style={{ marginBottom: 16 }} className={styles.ding}>
                     <Radio.Button value="全部">全部</Radio.Button>
+                    <Radio.Button value="未开始">未开始</Radio.Button>
                     <Radio.Button value="进行中">进行中</Radio.Button>
                     <Radio.Button value="已结束">已结束</Radio.Button>
                 </Radio.Group>
@@ -67,7 +94,8 @@ function QuesList(props) {
                 </ul>
             </div>
             {
-              props.manager.data && props.manager.data.map((item,index) =><div className={styles.every} key={index}>
+              
+              data && data.map((item,index) =><div className={styles.every} key={index}>
               <ul>
                 <li>{item.title}</li>
                 <li>
@@ -76,8 +104,8 @@ function QuesList(props) {
                   }
                 </li>
                 <li>{item.user_name}</li>
-                <li>{new Date(item.start_time * 1).getFullYear() + '-' + (new Date(item.start_time * 1).getMonth()+1 < 10 ? '0'+(new Date(item.start_time * 1).getMonth()+1) : new Date(item.start_time * 1).getMonth()+1) + '-' + new Date(item.start_time * 1).getDate()}</li>
-                <li>{new Date(item.end_time * 1).getFullYear() + '-' + (new Date(item.end_time * 1).getMonth()+1 < 10 ? '0'+(new Date(item.end_time * 1).getMonth()+1) : new Date(item.end_time * 1).getMonth()+1) + '-' + new Date(item.end_time * 1).getDate()}</li>
+                <li>{new Date(item.start_time * 1).toLocaleString()}</li>
+                <li>{new Date(item.end_time * 1).toLocaleString()}</li>
                 <li onClick={()=>{
                   console.log(item.exam_exam_id)
                   let pathname = '/exam/ExamDetail?id='+item.exam_exam_id

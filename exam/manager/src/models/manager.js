@@ -114,10 +114,11 @@ export default {
     // 同步操作
     reducers: {
       allQue(state, {payload}) {
-        return { ...state, data:payload.code===1?payload.exam:[]};
+        return { ...state, data:payload.code===1?payload:[]};
       },
       ExamDeta(state, {payload}) {
-        return { ...state, data:payload.code===1?payload.exam:[]};
+        console.log(payload)
+        return { ...state, data2:payload.code===1?payload.exam:[]};
       },
       save(state, action) {
           console.log(action)

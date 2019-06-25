@@ -13,12 +13,12 @@ function ExamDetail(props) {
     ExamDe({
       exam_exam_id:id
     })
-    if(props.manager.data && props.user.data6){
+    if(props.manager.data2 && props.user.data6){
       newArr({
-        arr:props.manager.data[0].question_ids
+        arr:props.manager.data2[0].question_ids
       })
       let arr1 = []
-      let arr = JSON.parse(props.manager.data[0].question_ids)
+      let arr = JSON.parse(props.manager.data2[0].question_ids)
       for(var i=0;i<arr.length;i++){
         arr1.push(props.user.data6.find(item=>item.questions_id === arr[i]))
       }

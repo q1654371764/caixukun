@@ -24,12 +24,12 @@ function AddDetail(props) {
     if(props.manager && props.manager){
         if(props.manager.addExamList){
             console.log(tit)
-            console.log(JSON.parse(props.manager.addExamList.exam[2].question_ids))
-            console.log(props.manager.addExamList.exam[2].exam_exam_id)
-            examRight(props.manager.addExamList.exam[2].exam_exam_id)
-            genRight(JSON.parse(props.manager.addExamList.exam[2].question_ids))
-            if(props.manager.addExamList.exam[2]){
-                JSON.parse(props.manager.addExamList.exam[2].question_ids).filter((item,index)=>{
+            console.log(JSON.parse(props.manager.addExamList.exam[0].question_ids))
+            console.log(props.manager.addExamList.exam[0].exam_exam_id)
+            examRight(props.manager.addExamList.exam[0].exam_exam_id)
+            genRight(JSON.parse(props.manager.addExamList.exam[0].question_ids))
+            if(props.manager.addExamList.exam[0]){
+                JSON.parse(props.manager.addExamList.exam[0].question_ids).filter((item,index)=>{
                     tit.push(props.user.data6.find((citem,cindex)=>item === citem.questions_id))
                 })
             }
