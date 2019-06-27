@@ -33,14 +33,14 @@ function Index(props){
     let cxt = canvas && canvas.getContext('2d');
     if(srcImg){
         newImg.src = srcImg;
-      cxt.drawImage(newImg,0,0,1200,633,0,0,250,158);
+      cxt.drawImage(newImg, 0, 0, 1280, 720, 0, 0, 400, 288);
      if(change){
         let files = change;
         var reader = new FileReader();
         reader.onload = function(){
             setimgs(this.result);
             if(newTopImg){
-             cxt.drawImage(newTopImg,0,0,533,299,150,25,104,77);
+             cxt.drawImage(newTopImg, 0, 0, 300, 300, 300, 80, 30, 30);
              if(!imgSrc){
                 props.changeImg({base64:canvas.toDataURL()})
              }

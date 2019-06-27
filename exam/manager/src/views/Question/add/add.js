@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import { connect } from 'dva';
-import Editor from 'for-editor'
+import Editor from '../../../vendor/for-editor';
 import styles from './add.scss'
 import { Select,message} from 'antd';
 

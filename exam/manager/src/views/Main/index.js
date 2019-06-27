@@ -76,7 +76,6 @@ const menu = (
           <Dropdown overlay={menu}>
                     <span style={{ height: '100%', width: "150px", display: 'flex', alignItems: 'center', justifyContent: 'center' }}><img src={img ? img : be} style={{ width: '40px', height: '40px', verticalAlign: 'middel', borderRadius: '50%', margin: '0 10px' }} alt="" />chenmanjie</span>
             </Dropdown>
-            {/* <button className={styles.btt} onClick={()=>props.changeLocal(props.locale==='zh'?'en':'zh')}>{props.locale==='zh'?'中文':'Eng'}</button> */}
           </div>
         </div>
     <Layout>
